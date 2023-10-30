@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="blocks up-login" style="flex: 2;">
+      <div class="title-container">
+        <h1 class="title">¡FOODY!</h1>
+        <img src="./../../../assets/Isotipo_NoBackground_3000px.png">
+      </div> 
+    </div>
+    <div class="blocks" style="flex: 4;">
+      <form [formGroup]="form" novalidate>
+        <div class="ion-padding">
+          <div class="login-field">
+            <input type="text" placeholder="Correo / Usuario" formControlName="email">
+            <ion-icon slot="end" name="person-outline"></ion-icon>
+          </div>
+          <div *ngIf="form.controls['email'].errors != null">
+            <small
+                *ngIf="form.controls['email'].errors!['required'] && form.controls['email'].touched">¡El Correo / Usuario es requerido!</small>
+          </div>
+          <div class="login-field">
+            <input type="password" placeholder="Contraseña" formControlName="password">
+            <ion-icon slot="end" name="person-outline"></ion-icon>
+          </div>
+          <div *ngIf="form.controls['password'].errors != null">
+            <small
+                *ngIf="form.controls['password'].errors!['required'] && form.controls['password'].touched">¡La
+                contraseña es requerida!</small>
+          </div>
+        </div>
+        <!-- <div class="buttons-container">
+          <ion-list>
+            <ion-item>
+              <ion-select label="Usuarios" placeholder="Selecciona un usuario" (ionChange)="OnFillFields($event)">
+                <ion-select-option value="admin@admin.com;111111">@Admin</ion-select-option>
+                <ion-select-option value="invitado@invitado.com;222222">@Invitado</ion-select-option>
+                <ion-select-option value="usuario@usuario.com;333333">@Usuario</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-list>
+        </div> -->
+      </form>
+    </div>
+    <div class="blocks bottom-login" style="flex: 1;">     
+      <div class="login">
+        <ion-button class="login-button" (click)="onLoginClick()" expand="block" fill="clear" shape="round">
+          <span>Iniciar sesión</span>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>
