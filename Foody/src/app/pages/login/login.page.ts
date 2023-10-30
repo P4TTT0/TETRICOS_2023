@@ -30,6 +30,11 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   // ||====|| Funciones || ====||
+  
+  /**
+   * The function checks if the form is valid, logs in the user using the provided email and password,
+   * and navigates to the home page if the login is successful, otherwise it displays an error message.
+   */
   public async onLoginClick() : Promise<void>
   {
     if(this.form.valid)
