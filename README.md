@@ -15,7 +15,11 @@ Estamos listos para colaborar en equipo y llevar a cabo el proyecto **TÉTRICOS_
 
 ¡Paleta de colores! 🎨
 
+![PaletaColores_TETRICOS_2023](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/9b2281aa-0291-4e5c-a82a-72af54c35ca8)
+
 ¡Isotipo! 🍔
+
+![Isotipo_RedBackground_1024px](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/fb7b3608-5f02-49a0-a59d-efbccf2b64dd)
 
 ¡Tipografia! 🔠
 
