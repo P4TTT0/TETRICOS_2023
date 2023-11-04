@@ -15,8 +15,15 @@ import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), FormsModule, ReactiveFormsModule, AppRoutingModule, provideFirebaseApp(() => initializeApp(environment.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: FIREBASE_OPTIONS, useValue: environment.firebase } ],
+  imports: [BrowserModule, 
+    IonicModule.forRoot(), 
+    FormsModule, 
+    ReactiveFormsModule, 
+    AppRoutingModule, 
+    provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
+    provideAuth(() => getAuth()), 
+    provideFirestore(() => getFirestore())],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, { provide: FIREBASE_OPTIONS, useValue: environment.firebaseConfig } ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

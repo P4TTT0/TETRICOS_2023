@@ -76,15 +76,15 @@ export class AutheticationService {
    * logging in, saving user information, and returning the user's UID. If the user already exists, it
    * returns false.
    */
-  public async register(email : string, password : string, userName : string)
+  public async register(userData : any)
   {
-    const userExist = await this.data.userExist(userName);
+    const userExist = await this.data.userExist(userData['UserName']);
     if(!userExist)
     {
-      await this.ngFireAuth.createUserWithEmailAndPassword(email, password);
-      await this.logIn(email, password);
+      await this.ngFireAuth.createUserWithEmailAndPassword(userData['email'], userData['password']);
+      await this.logIn(userData['email'], userData['password']);
       const userUID = await this.getUserUid() || '';
-      await this.data.SaveUser(userUID, userName, email);
+      await this.data.SaveUser(userUID, userData);
       return true;
     }
     return false;
