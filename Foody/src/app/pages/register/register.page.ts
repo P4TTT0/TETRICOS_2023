@@ -60,7 +60,7 @@ export class RegisterPage implements OnInit {
         PhotoBase64 : this.form.controls['photo'].value
       }
 
-      const user = await this.auth.register(userData);
+      const user = await this.auth.register(userData, this.form.controls['password'].value);
       
       if(user)
       {
