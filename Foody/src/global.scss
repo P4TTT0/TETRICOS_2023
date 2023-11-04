@@ -53,3 +53,9 @@ small
     background-color: #ffcc00;
     color: #333;
 }
+
+
+body.scanner-active {
+    --background: transparent;
+    --ion-background-color: transparent;
+  }

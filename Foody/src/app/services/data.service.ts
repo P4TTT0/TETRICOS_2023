@@ -34,18 +34,14 @@ export class DataService {
    * @param {string} email - The email parameter is a string that represents the email address of the
    * user.
    */
-  public async SaveUser(userUID : string, userName : string, email : string)
+  public async SaveUser(userUID : string, userData : any)
   {
     const userCollection = collection(this.firestore, 'User');
     const docRef = doc(userCollection, userUID);
 
-    await setDoc(docRef,
-      {
-        UserName: userName,
-        Email: email,
-        JoinDate: new Date(),
-        Rol: 'Usuario'
-      })
+    userData['JoinDate'] = new Date();
+
+    await setDoc(docRef, userData);
   }
 
   /**
