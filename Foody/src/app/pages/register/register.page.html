@@ -1,101 +1,88 @@
-<ion-content [fullscreen]="true"  *ngIf="!usandoQR">
-  <body>
+<ion-content [fullscreen]="true" *ngIf="!usandoQR">
   <div class="container">
     <div class="blocks up-login" style="flex: 2;">
       <div class="title-container">
         <h1 class="title">¡FOODY!</h1>
         <img src="./../../../assets/Isotipo_NoBackground_3000px.png">
-      </div> 
+      </div>
     </div>
     <div class="blocks" style="flex: 4;">
-      <form [formGroup]="form" novalidate>
-        <div class="ion-padding">
-          <ion-button style="--background: gray;" id="qr-button" (click)="readQR()">
-            <ion-icon slot="icon-only" name="qr-code" style="background-color: gray;"></ion-icon>
-          </ion-button>
-          <ion-button style="--background: gray;" id="qr-button" (click)="registerClient()">
-            <ion-icon slot="icon-only" name="qr-code" style="background-color: gray;"></ion-icon>
-          </ion-button>
-          <ion-button style="--background:gray" (click)="uploadPhoto()">Cargar Foto</ion-button>
-          <div class="image-container" *ngIf="form.controls['photo'].value">
-            <img [src]="'data:image/jpeg;base64,' + form.controls['photo'].value" alt="Foto de perfil" width = "50" height="50">
-          </div>
-          <div> <!-- HOLA PATO, ACA ERA EL DISPLAY FLEX!!-->
-            <div class="login-field">
-              <input type="text" placeholder="Nombre" formControlName="name">
-              <ion-icon slot="end" name="person-outline"></ion-icon>
-            </div>
-            <div *ngIf="form.controls['name'].errors != null">
-              <small
-                  *ngIf="form.controls['name'].errors!['required'] && form.controls['name'].touched">¡El Correo / Usuario es requerido!</small>
-            </div>
-            <div class="login-field">
-              <input type="text" placeholder="Apellido" formControlName="lastname">
-              <ion-icon slot="end" name="person-outline"></ion-icon>
-            </div>
-            <div *ngIf="form.controls['lastname'].errors != null">
-              <small
-                  *ngIf="form.controls['lastname'].errors!['required'] && form.controls['lastname'].touched">¡El Correo / Usuario es requerido!</small>
-            </div>
-          </div>
-          <div> <!-- HOLA PATO, ACA IRIA OTRO CREO EL DISPLAY FLEX!!-->
-            <div class="login-field">
-              <input type="text" placeholder="DNI" formControlName="dni">
-              <ion-icon slot="end" name="person-outline"></ion-icon>
-            </div>
-            <div *ngIf="form.controls['dni'].errors != null">
-              <small
-                  *ngIf="form.controls['dni'].errors!['required'] && form.controls['dni'].touched">¡El Correo / Usuario es requerido!</small>
-                  <small 
-                  *ngIf="!form.controls['dni'].errors!['required'] && form.controls['dni'].errors!['pattern'] && form.controls['dni'].touched">¡Formato de DNI invalido!</small>
-              </div>
-            <div class="login-field">
-              <input type="text" placeholder="Nombre de usuario" formControlName="username">
-              <ion-icon slot="end" name="person-outline"></ion-icon>
-            </div>
-            <div *ngIf="form.controls['username'].errors != null">
-              <small
-                  *ngIf="form.controls['username'].errors!['required'] && form.controls['username'].touched">¡El Correo / Usuario es requerido!</small>
-            </div>
-          </div>
-          <div class="login-field">
-            <input type="text" placeholder="Correo / Usuario" formControlName="email">
-            <ion-icon slot="end" name="person-outline"></ion-icon>
-          </div>
-          <div *ngIf="form.controls['email'].errors != null">
-            <small
-                *ngIf="form.controls['email'].errors!['required'] && form.controls['email'].touched">¡El Correo / Usuario es requerido!</small>
-          </div>
-          <div class="login-field">
-            <input type="password" placeholder="Contraseña" formControlName="password">
-            <ion-icon slot="end" name="person-outline"></ion-icon>
-          </div>
-          <div *ngIf="form.controls['password'].errors != null">
-            <small
-                *ngIf="form.controls['password'].errors!['required'] && form.controls['password'].touched">¡La
-                contraseña es requerida!</small>
+      <form [formGroup]="form">
+        <div class="buttons-container">
+          <div class="buttons-container">
+            <ion-button style="--background: gray;" id="qr-button" (click)="readQR()">
+              <ion-icon slot="icon-only" name="qr-code" style="background-color: gray;"></ion-icon>
+            </ion-button>
+            <ion-button style="--background:gray" (click)="uploadPhoto()">Cargar Foto</ion-button>
           </div>
         </div>
-        <!-- <div class="buttons-container">
-          <ion-list>
-            <ion-item>
-              <ion-select label="Usuarios" placeholder="Selecciona un usuario" (ionChange)="OnFillFields($event)">
-                <ion-select-option value="admin@admin.com;111111">@Admin</ion-select-option>
-                <ion-select-option value="invitado@invitado.com;222222">@Invitado</ion-select-option>
-                <ion-select-option value="usuario@usuario.com;333333">@Usuario</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-list>
-        </div> -->
+        <div class="fields-container">
+          <div class="row-field">
+            <div style="margin-right: 10px;">
+              <div class="login-field">
+                <input type="text" placeholder="Nombre" formControlName="name">
+              </div>
+              <div *ngIf="form.controls['name'].errors != null">
+                <small *ngIf="form.controls['name'].errors!['required'] && form.controls['name'].touched">¡Requerido!</small>
+              </div>
+            </div>
+            <div>
+              <div class="login-field">
+                <input type="text" placeholder="Apellido" formControlName="lastname">
+              </div>
+              <div *ngIf="form.controls['lastname'].errors != null">
+                <small *ngIf="form.controls['lastname'].errors!['required'] && form.controls['lastname'].touched">¡Requerido!</small>
+              </div>
+            </div>
+          </div>
+          <div class="row-field">
+            <div style="margin-right: 10px; flex: 1;">
+              <div class="login-field">
+                <input type="text" placeholder="DNI" formControlName="dni">
+              </div>
+              <div *ngIf="form.controls['dni'].errors != null">
+                <small *ngIf="form.controls['dni'].errors!['required'] && form.controls['dni'].touched">¡Requerido!</small>
+                <small *ngIf="!form.controls['dni'].errors!['required'] && form.controls['dni'].errors!['pattern'] && form.controls['dni'].touched">¡Formato invalido!</small>
+              </div>
+            </div>
+            <div style="flex: 2;">
+              <div class="login-field">
+                <input type="text" placeholder="Nombre de usuario" formControlName="username">
+              </div>
+              <div *ngIf="form.controls['username'].errors != null">
+                <small *ngIf="form.controls['username'].errors!['required'] && form.controls['username'].touched">¡Requerido!</small>
+              </div>
+            </div>
+          </div>
+          <div style="margin: 10px 0px;">
+            <div class="login-field">
+              <input type="text" placeholder="Correo electronico" formControlName="email">
+              <ion-icon slot="end" name="person-outline"></ion-icon>
+            </div>
+            <div *ngIf="form.controls['email'].errors != null">
+              <small *ngIf="form.controls['email'].errors!['required'] && form.controls['email'].touched">¡Requerido!</small>
+            </div>
+          </div>
+          <div style="margin: 10px 0px;">
+            <div class="login-field">
+              <input type="password" placeholder="Contraseña" formControlName="password">
+            </div>
+            <div *ngIf="form.controls['password'].errors != null">
+              <small *ngIf="form.controls['password'].errors!['required'] && form.controls['password'].touched">¡Requerido!</small>
+            </div>
+          </div>
+        </div>  
+        <div class="ans-container">
+          <p>¿Ya tienes cuenta? <a href="login">Inicia sesion</a></p> 
+        </div>
       </form>
     </div>
-    <div class="blocks bottom-login" style="flex: 1;">     
+    <div class="blocks bottom-login" style="flex: 1;">
       <div class="login">
         <ion-button class="login-button" (click)="registerClient()" expand="block" fill="clear" shape="round">
-          <span>Iniciar sesión</span>
+          <span>Registrarse</span>
         </ion-button>
       </div>
     </div>
   </div>
-</body>
 </ion-content>
