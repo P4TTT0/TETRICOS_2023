@@ -28,7 +28,8 @@ Estamos listos para colaborar en equipo y llevar a cabo el proyecto **TÉTRICOS_
 ## | TAREAS |
 
 Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< Trello />](https://trello.com/es)
-[< Trello />](https://trello.com/invite/b/wNSLp2hW/ATTIb7f76379161e56423dbe4b25c2323d89BAAC00FA/tetricos2023)
+
+[< Tablero trello />](https://trello.com/invite/b/wNSLp2hW/ATTIb7f76379161e56423dbe4b25c2323d89BAAC00FA/tetricos2023)
 
 #### Perez Cardenal Patricio (ALFA):
 - **[Realizar logo APP]**: | Done | 29 oct. - 29 oct. | **[✔]**
@@ -37,7 +38,7 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[Realizar splash APP]**: | To do | ??? | **[❌]**
 
 #### Tulis Curra Luis (BETA):
-- **[Alta de clientes]**: | To do | 02 nov. - 04 nov. | **[✔️]**
+- **[Alta de clientes]**: | Done | 02 nov. - 04 nov. | **[✔️]**
 - **[QR Mesa]**: | To do | ??? | **[❌]**
 - **[Gestión ingreso local]**: | To do | ??? | **[❌]**
 
