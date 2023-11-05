@@ -53,18 +53,18 @@ export class RegisterPage implements OnInit {
         JoinDate : undefined,
         Rol : 'Usuario',
         UserName : this.form.controls['username'].value,
-        Validated : false,
+        Validated : null,
         Name : this.form.controls['name'].value,
         LastName : this.form.controls['lastname'].value,
         DNI : this.form.controls['dni'].value,
         PhotoBase64 : this.form.controls['photo'].value
       }
 
-      const user = await this.auth.register(userData);
+      const user = await this.auth.register(userData, this.form.controls['password'].value);
       
       if(user)
       {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/validate-mail');
       }
       else
       {

@@ -1,0 +1,20 @@
+.background
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 20px 40px;
+    border-radius: 0px 0px 50px 0px;
+    background-color: #B84141;
+    img
+    {
+        width: 70px;;
+    }
+    span
+    {
+        background-color: #903333c3;
+        padding: 10px;
+        border-radius: 10px;
+    }
+}

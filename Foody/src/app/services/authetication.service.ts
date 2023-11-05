@@ -17,6 +17,7 @@ export class AutheticationService {
   // ||====|| Variables ||====||
   public logueado : boolean = false;
   public userName : string = "";
+  public validationState : boolean | null = null;
 
   // ||====|| Constructor ||====||
   constructor(public ngFireAuth : AngularFireAuth, private data : DataService) { }
@@ -42,6 +43,7 @@ export class AutheticationService {
       const credential = await this.ngFireAuth.signInWithEmailAndPassword(userEmail, password);
       const uid = await this.getUserUid() || '';
       this.userName = await this.data.getUserNameByUID(uid);
+      this.validationState = await this.data.getValidationStateByUID(uid);
       this.logueado = true;
       return credential;
     } catch (error) {
@@ -76,18 +78,28 @@ export class AutheticationService {
    * logging in, saving user information, and returning the user's UID. If the user already exists, it
    * returns false.
    */
-  public async register(userData : any)
+  public async register(userData : any, password : string)
   {
     const userExist = await this.data.userExist(userData['UserName']);
     if(!userExist)
     {
-      await this.ngFireAuth.createUserWithEmailAndPassword(userData['email'], userData['password']);
-      await this.logIn(userData['email'], userData['password']);
+      await this.ngFireAuth.createUserWithEmailAndPassword(userData['Email'], password);
+      await this.logIn(userData['Email'], password);
       const userUID = await this.getUserUid() || '';
+      this.sendMailVerification();
       await this.data.SaveUser(userUID, userData);
       return true;
     }
     return false;
+  }
+
+  /**
+   * The function sends a verification email to the current user.
+   * @returns The sendEmailVerification() method is being returned.
+   */
+  public async sendMailVerification()
+  {
+    return (await this.ngFireAuth.currentUser)?.sendEmailVerification();
   }
 
   /**

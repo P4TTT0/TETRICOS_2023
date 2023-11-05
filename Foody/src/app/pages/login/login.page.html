@@ -25,17 +25,17 @@
           <small *ngIf="form.controls['password'].errors!['required'] && form.controls['password'].touched">¡La contraseña es requerida!</small>
         </div>
       </div>
-      <!-- <div class="buttons-container">
-        <ion-list>
-          <ion-item>
-            <ion-select label="Usuarios" placeholder="Selecciona un usuario" (ionChange)="OnFillFields($event)">
-              <ion-select-option value="admin@admin.com;111111">@Admin</ion-select-option>
-              <ion-select-option value="invitado@invitado.com;222222">@Invitado</ion-select-option>
-              <ion-select-option value="usuario@usuario.com;333333">@Usuario</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-list>
-      </div> -->
+      <div class="buttons-container">
+        <ion-button (click)="onFillFields('admin@admin.com', '123456')" expand="block" fill="clear" shape="round">
+          1 <ion-icon slot="end" name="person-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="onFillFields('P4TTT0', '123456')" expand="block" fill="clear" shape="round">
+          2 <ion-icon slot="end" name="person-outline"></ion-icon>
+        </ion-button>
+        <ion-button (click)="onFillFields('usuario@usuario.com', '333333')" expand="block" fill="clear" shape="round">
+          3 <ion-icon slot="end" name="person-outline"></ion-icon>
+        </ion-button>
+      </div>
       <div>
         <p>¿No tienes cuenta? <a href="register">Registrate</a></p>
       </div>

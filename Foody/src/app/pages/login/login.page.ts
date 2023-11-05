@@ -31,9 +31,10 @@ export class LoginPage implements OnInit {
 
   // ||====|| Funciones || ====||
   
+
   /**
-   * The function checks if the form is valid, logs in the user using the provided email and password,
-   * and navigates to the home page if the login is successful, otherwise it displays an error message.
+   * This function handles the login process, including form validation, authentication, and
+   * navigation.
    */
   public async onLoginClick() : Promise<void>
   {
@@ -42,7 +43,15 @@ export class LoginPage implements OnInit {
       const user = await this.auth.logIn(this.form.controls['email'].value, this.form.controls['password'].value);
       if(user?.user)
       {
-        this.router.navigateByUrl('/home');
+        if(user?.user?.emailVerified == true || this.form.controls['email'].value == 'admin@admin.com')
+        {
+          this.router.navigateByUrl('/home');
+        }
+        else
+        {
+          this.toast.showMessage('¡No se ha verificado el mail!')
+          this.auth.logOut();
+        }
       }
       else
       {
@@ -55,6 +64,13 @@ export class LoginPage implements OnInit {
     }
   }
 
-
-
+  public onFillFields(emailQuickAccess : string, passwordQuickAccess : string)
+  {
+    this.form.setValue(
+      {
+        email: emailQuickAccess,
+        password: passwordQuickAccess
+      }
+    ) 
+  }
 }
