@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HomePage } from './home.page';
 
 import { HomePageRoutingModule } from './home-routing.module';
+import { AdminHomeComponent } from '../components/homes/admin-home/admin-home.component';
+import { SharedModule } from '../modules/shared/shared.module';
 
 
 @NgModule({
@@ -12,8 +14,9 @@ import { HomePageRoutingModule } from './home-routing.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule
+    HomePageRoutingModule, 
+    SharedModule
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, AdminHomeComponent]
 })
 export class HomePageModule {}

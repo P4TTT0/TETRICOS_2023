@@ -24,6 +24,15 @@ export class DataService {
     const images = querySnapshot.docs.map(doc => doc.data());
   }
 
+  public async getUserByUserName(userName : string)
+  {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('UserName', '==', userName));
+    const querySnapshot = await getDocs(q);
+    const userDoc = querySnapshot.docs[0];
+    return userDoc.data();
+  }
+
   /**
    * The function saves user information to a Firestore database.
    * @param {string} userUID - The userUID parameter is a string that represents the unique identifier
@@ -42,6 +51,23 @@ export class DataService {
     userData['JoinDate'] = new Date();
 
     await setDoc(docRef, userData);
+  }
+
+  /**
+   * The function `UpdateValidationUser` updates the `Validated` field of a user document in the
+   * Firestore database.
+   * @param {string} userUID - The userUID parameter is a string that represents the unique identifier
+   * of the user whose validation status needs to be updated.
+   * @param {boolean} validated - A boolean value indicating whether the user is validated or not.
+   */
+  public async UpdateValidationUser(userUID: string, validated : boolean): Promise<void> {
+    const userCollection = collection(this.firestore, 'User');
+    const docRef = doc(userCollection, userUID);
+
+    await updateDoc(docRef, 
+    {
+      Validated: validated,
+    });
   }
 
   /**
@@ -69,6 +95,26 @@ export class DataService {
     } else {
       return null;
     }
+  }
+
+ /**
+  * The function `GetUsersNotAccepted` retrieves a list of users from a Firestore collection where the
+  * `Validated` field is set to `false`.
+  * @returns an array of user objects who have not been accepted.
+  */
+  public async GetUsersNotAccepted(): Promise<any | null> {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Validated', '==', null));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const users = querySnapshot.docs.map(doc => doc.data());
+
+    return users;
   }
 
  /**
@@ -130,5 +176,19 @@ export class DataService {
     {
       console.log('Error: ' + error);
     }
+  }
+
+  public async getUIDByUserName(userName: string)
+  {
+    const userCollection = collection(this.firestore, 'User');
+    const querySnapshot = await getDocs(query(userCollection, where('UserName', '==', userName)));
+    
+    if (querySnapshot.size === 0) {
+      return null;
+    }
+    
+    const userDoc = querySnapshot.docs[0];
+    const userUID = userDoc.id;
+    return userUID;
   }
 }

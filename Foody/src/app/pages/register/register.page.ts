@@ -53,7 +53,7 @@ export class RegisterPage implements OnInit {
         JoinDate : undefined,
         Rol : 'Usuario',
         UserName : this.form.controls['username'].value,
-        Validated : false,
+        Validated : null,
         Name : this.form.controls['name'].value,
         LastName : this.form.controls['lastname'].value,
         DNI : this.form.controls['dni'].value,
