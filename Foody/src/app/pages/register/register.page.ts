@@ -64,7 +64,7 @@ export class RegisterPage implements OnInit {
       
       if(user)
       {
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/validate-mail');
       }
       else
       {

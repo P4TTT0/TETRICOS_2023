@@ -1,4 +1,5 @@
 <ion-content [fullscreen]="true">
   <app-nav-bar></app-nav-bar>
-  <app-admin-home></app-admin-home>
+  <div *ngIf="this.auth.validationState == null; else elseBlock"><app-no-validated></app-no-validated></div>
+  <ng-template #elseBlock><app-admin-home></app-admin-home></ng-template>
 </ion-content>

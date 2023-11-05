@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
       const user = await this.auth.logIn(this.form.controls['email'].value, this.form.controls['password'].value);
       if(user?.user)
       {
-        if(user?.user?.emailVerified == true)
+        if(user?.user?.emailVerified == true || this.form.controls['email'].value == 'admin@admin.com')
         {
           this.router.navigateByUrl('/home');
         }
@@ -62,5 +62,15 @@ export class LoginPage implements OnInit {
     {
       this.toast.showMessage('¡Tienes errores en los campos!')
     }
+  }
+
+  public onFillFields(emailQuickAccess : string, passwordQuickAccess : string)
+  {
+    this.form.setValue(
+      {
+        email: emailQuickAccess,
+        password: passwordQuickAccess
+      }
+    ) 
   }
 }

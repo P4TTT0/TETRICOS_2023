@@ -17,6 +17,7 @@ export class AutheticationService {
   // ||====|| Variables ||====||
   public logueado : boolean = false;
   public userName : string = "";
+  public validationState : boolean | null = null;
 
   // ||====|| Constructor ||====||
   constructor(public ngFireAuth : AngularFireAuth, private data : DataService) { }
@@ -42,6 +43,7 @@ export class AutheticationService {
       const credential = await this.ngFireAuth.signInWithEmailAndPassword(userEmail, password);
       const uid = await this.getUserUid() || '';
       this.userName = await this.data.getUserNameByUID(uid);
+      this.validationState = await this.data.getValidationStateByUID(uid);
       this.logueado = true;
       return credential;
     } catch (error) {

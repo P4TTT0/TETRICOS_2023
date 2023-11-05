@@ -178,6 +178,29 @@ export class DataService {
     }
   }
 
+  public async getValidationStateByUID(UIDUser: string)
+  {
+    try
+    {
+      const userCollection = collection(this.firestore, 'User');
+      const userDoc = doc(userCollection, UIDUser);
+      const userDocSnapshot = await getDoc(userDoc);
+      if (userDocSnapshot.exists()) {
+        const userData = userDocSnapshot.data();
+        return userData['Validated'];
+      } 
+      else 
+      {
+        console.log('User not found');
+        return '';
+      }
+    }
+    catch(error : any)
+    {
+      console.log('Error: ' + error);
+    }
+  }
+
   public async getUIDByUserName(userName: string)
   {
     const userCollection = collection(this.firestore, 'User');

@@ -22,6 +22,10 @@ const routes: Routes = [
     path: 'validar-usuario',
     loadChildren: () => import('./pages/admin/validar-usuario/validar-usuario.module').then( m => m.ValidarUsuarioPageModule)
   },
+  {
+    path: 'validate-mail',
+    loadChildren: () => import('./pages/validate-mail/validate-mail.module').then( m => m.ValidateMailPageModule)
+  },
 
 
 ];
