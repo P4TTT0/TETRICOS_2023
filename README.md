@@ -35,7 +35,10 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[Realizar logo APP]**: | Done | 29 oct. - 29 oct. | **[✔]**
 - **[Realizar Log-In]**: | Done | 29 oct. - 29 oct. | **[✔]**
 - **[Arreglo de estilos]**: | Done | 04 nov. - 04 nov. | **[✔]**
-- **[Realizar splash APP]**: | To do | ??? | **[❌]**
+- **[Realizar splash APP]**: | Done | 04 nov. - 04 nov. | **[✔]**
+- **[Verificacion de MAIL]**: | Done | 04 nov. - 04 nov. | **[✔]**
+- **[Validacion de cuentas]**: | Done | 04 nov. - 05 nov. | **[✔]**
+- **[Encuesta clientes]**: | To do | ??? | **[❌]**
 
 #### Tulis Curra Luis (BETA):
 - **[Alta de clientes]**: | Done | 02 nov. - 04 nov. | **[✔️]**
