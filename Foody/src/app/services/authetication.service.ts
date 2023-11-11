@@ -51,6 +51,8 @@ export class AutheticationService {
     }
   }
 
+
+
   /**
    * The logOut function logs the user out by setting the logueado variable to false, clearing the
    * userName variable, and calling the signOut method from ngFireAuth.
@@ -93,6 +95,22 @@ export class AutheticationService {
     return false;
   }
 
+  public async registerAnon(userData : any, password : string)
+  {
+    const userExist = await this.data.userExist(userData['UserName']);
+    if(!userExist)
+    {
+      await this.ngFireAuth.createUserWithEmailAndPassword(userData['Email'], password);
+      await this.logIn(userData['Email'], password);
+      const userUID = await this.getUserUid() || '';      
+      await this.data.SaveUser(userUID, userData);
+      this.logueado = true;
+      this.validationState = true;
+      return true;
+    }
+    return false;
+  }
+
   /**
    * The function sends a verification email to the current user.
    * @returns The sendEmailVerification() method is being returned.
@@ -130,5 +148,20 @@ export class AutheticationService {
     const uid = await this.getUserUid() || '';
     this.userName = await this.data.getUserNameByUID(uid);
     this.logueado = true;
+  }
+
+  public async anonLogin() {
+    try {
+      await this.ngFireAuth.signInAnonymously();
+      this.logueado = true;
+      this.validationState = true;
+      const randomNumbers = Math.floor(1000 + Math.random() * 9000); // Genera un número aleatorio de 4 dígitos
+      this.userName = `anon${randomNumbers}`;
+    } catch (error) {
+      // Manejar cualquier error que pueda ocurrir durante la autenticación anónima
+      console.error('Error during anonymous login:', error);
+      // Aquí podrías manejar el error de Firebase, mostrar un mensaje o realizar alguna acción específica.
+
+    }
   }
 }

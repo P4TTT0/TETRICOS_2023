@@ -73,4 +73,10 @@ export class LoginPage implements OnInit {
       }
     ) 
   }
+
+  async onAnonLoginClick(){
+
+    await this.auth.anonLogin();
+    this.router.navigateByUrl('/home');
+  }
 }
