@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { AdminHomeComponent } from '../components/homes/admin-home/admin-home.component';
 import { SharedModule } from '../modules/shared/shared.module';
 import { NoValidatedComponent } from '../components/homes/user/no-validated/no-validated.component';
+import { ValidatedComponent } from '../components/homes/user/validated/validated.component';
 
 
 @NgModule({
@@ -18,6 +19,6 @@ import { NoValidatedComponent } from '../components/homes/user/no-validated/no-v
     HomePageRoutingModule, 
     SharedModule
   ],
-  declarations: [HomePage, AdminHomeComponent, NoValidatedComponent]
+  declarations: [HomePage, AdminHomeComponent, NoValidatedComponent, ValidatedComponent]
 })
 export class HomePageModule {}

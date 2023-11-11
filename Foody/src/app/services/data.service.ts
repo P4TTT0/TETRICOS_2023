@@ -238,4 +238,24 @@ export class DataService {
       return () => unsubscribe();
     });
   }
+  
+  public async GetUserRolByUserName(userName: string): Promise<string | null> {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('UserName', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+    const userDoc = querySnapshot.docs[0];
+    const userData = userDoc.data();
+  
+    if (userData && userData['Rol']) {
+      console.log(userData['Rol']);
+      return userData['Rol'];
+    } else {
+      return null;
+    }
+  }
 }
