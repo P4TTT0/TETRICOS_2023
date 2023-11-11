@@ -42,10 +42,11 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 
 #### Tulis Curra Luis (BETA):
 - **[Alta de clientes]**: | Done | 02 nov. - 04 nov. | **[✔️]**
+- **[QR Ingreso local]**: | Doing | 11 nov. - ??? | **[🔨]**
 - **[QR Mesa]**: | To do | ??? | **[❌]**
-- **[Gestión ingreso local]**: | To do | ??? | **[❌]**
 
 #### Nani Renato (GAMMA):
-- **[QR Propina]**: | To do | ??? | **[❌]**
-- **[Gestión pedidos]**: | To do | ??? | **[❌]**
-- **[Notificacion nuevo cliente]**: | To do | ??? | **[❌]**
+- **[Log-In Anonimo]**: | Done | 10 nov. - 11 nov. | **[✔️]**
+- **[HOMES Usuario/Anon]**: | Done | 11 nov. - 11 nov. | **[✔️]**
+- **[Envio de MAILS]**: | Done | 11 nov. - 11 nov. | **[✔️]**
+- **[Gestión ingreso local]**: | Done | 11 nov. - 11 nov. | **[✔️]**
