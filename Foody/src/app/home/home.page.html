@@ -1,5 +1,12 @@
 <ion-content [fullscreen]="true">
   <app-nav-bar></app-nav-bar>  
   <div *ngIf="this.auth.validationState == null; else elseBlock"><app-no-validated></app-no-validated></div>
-  <ng-template #elseBlock><app-admin-home></app-admin-home></ng-template>
+  <ng-template #elseBlock>
+    <div *ngIf="this.auth.rol == 'Admin'">
+      <app-admin-home></app-admin-home>
+    </div>   
+    <div *ngIf="this.auth.rol == 'Usuario' || 'Anon' ">
+      <app-validated></app-validated>
+    </div>  
+  </ng-template>
 </ion-content>

@@ -18,6 +18,7 @@ export class AutheticationService {
   public logueado : boolean = false;
   public userName : string = "";
   public validationState : boolean | null = null;
+  public rol : string = "";
 
   // ||====|| Constructor ||====||
   constructor(public ngFireAuth : AngularFireAuth, private data : DataService) { }
@@ -44,6 +45,7 @@ export class AutheticationService {
       const uid = await this.getUserUid() || '';
       this.userName = await this.data.getUserNameByUID(uid);
       this.validationState = await this.data.getValidationStateByUID(uid);
+      this.rol = await this.data.GetUserRolByUserName(this.userName) || '';
       this.logueado = true;
       return credential;
     } catch (error) {
@@ -63,6 +65,7 @@ export class AutheticationService {
   {
     this.logueado = false;
     this.userName = '';
+    this.rol = '';
     return await this.ngFireAuth.signOut();
   }
 
@@ -93,23 +96,7 @@ export class AutheticationService {
       return true;
     }
     return false;
-  }
-
-  public async registerAnon(userData : any, password : string)
-  {
-    const userExist = await this.data.userExist(userData['UserName']);
-    if(!userExist)
-    {
-      await this.ngFireAuth.createUserWithEmailAndPassword(userData['Email'], password);
-      await this.logIn(userData['Email'], password);
-      const userUID = await this.getUserUid() || '';      
-      await this.data.SaveUser(userUID, userData);
-      this.logueado = true;
-      this.validationState = true;
-      return true;
-    }
-    return false;
-  }
+  }  
 
   /**
    * The function sends a verification email to the current user.
@@ -148,6 +135,7 @@ export class AutheticationService {
     const uid = await this.getUserUid() || '';
     this.userName = await this.data.getUserNameByUID(uid);
     this.logueado = true;
+    this.rol = await this.data.GetUserRolByUserName(this.userName) || ''; 
   }
 
   public async anonLogin() {
@@ -157,11 +145,9 @@ export class AutheticationService {
       this.validationState = true;
       const randomNumbers = Math.floor(1000 + Math.random() * 9000); // Genera un número aleatorio de 4 dígitos
       this.userName = `anon${randomNumbers}`;
-    } catch (error) {
-      // Manejar cualquier error que pueda ocurrir durante la autenticación anónima
-      console.error('Error during anonymous login:', error);
-      // Aquí podrías manejar el error de Firebase, mostrar un mensaje o realizar alguna acción específica.
-
+      this.rol = "Anon";
+    } catch (error) {      
+      console.error('Error during anonymous login:', error);    
     }
   }
 }
