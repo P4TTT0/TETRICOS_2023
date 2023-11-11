@@ -54,7 +54,6 @@ form
     background-color: #B84141;
     border-radius: 0px 0px 90px 0px;
 }
-
 .bottom-login
 {
     background-color: #B84141;
@@ -64,6 +63,12 @@ form
     width: 100%;
     height: 100%;
 }
+
+.anon-button
+{
+    --background: #B84141; 
+}
+
 .login-button
 {
     width: 100%;

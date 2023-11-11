@@ -26,6 +26,10 @@ const routes: Routes = [
     path: 'validate-mail',
     loadChildren: () => import('./pages/validate-mail/validate-mail.module').then( m => m.ValidateMailPageModule)
   },
+  {
+    path: 'lista-espera',
+    loadChildren: () => import('./pages/metre/lista-espera/lista-espera.module').then( m => m.ListaEsperaPageModule)
+  },
 
 
 ];

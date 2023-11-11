@@ -40,7 +40,8 @@
         <p>¿No tienes cuenta? <a href="register">Registrate</a></p>
       </div>
     </form>
-    <div class="blocks bottom-login" style="flex: 1;">     
+    <ion-button (click)="onAnonLoginClick()"  class="anon-button">Ingreso anónimo</ion-button>
+    <div class="blocks bottom-login" style="flex: 1;">          
       <div class="login">
         <ion-button class="login-button" (click)="onLoginClick()" expand="block" fill="clear" shape="round">
           <span>Iniciar sesión</span>

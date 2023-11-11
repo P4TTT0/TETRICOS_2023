@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { addDoc, collection, Firestore, getDoc, getDocs, updateDoc, collectionData, doc, query, where, orderBy, setDoc, onSnapshot } from
+import { addDoc, collection, Firestore, getDoc, getDocs, updateDoc, collectionData, doc, query, where, orderBy, setDoc, onSnapshot, Timestamp } from
 '@angular/fire/firestore';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
@@ -213,5 +213,29 @@ export class DataService {
     const userDoc = querySnapshot.docs[0];
     const userUID = userDoc.id;
     return userUID;
+  }
+  
+  public async saveUserWaitingList(userUID : string, userData : any)
+  {
+    const userCollection = collection(this.firestore, 'UsersWaitingList');
+    const docRef = doc(userCollection, userUID);
+
+    userData.Timestamp = Timestamp.now().toDate();
+
+    await setDoc(docRef, userData);
+  }
+ 
+  public getUsersWaitingList(): Observable<any[]> {
+    const userCollection = collection(this.firestore,"UsersWaitingList");
+    const q = query(userCollection, orderBy('Timestamp', 'desc'));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
   }
 }
