@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AutheticationService } from '../services/authetication.service';
+import { PushNotificationService } from '../services/push-notifications.service';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,9 @@ import { AutheticationService } from '../services/authetication.service';
 })
 export class HomePage {
 
-  constructor(public auth : AutheticationService) {}
+  constructor(public auth : AutheticationService, private push : PushNotificationService) 
+  {
+    this.push.getUser();
+  }
 
 }

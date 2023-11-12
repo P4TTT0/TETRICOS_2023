@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Platform } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +17,7 @@ export class LoginPage implements OnInit {
   public form : FormGroup;
 
   // ||====|| Constructor ||====||
-  constructor(private formBuilder : FormBuilder, private toast : ToastService, private auth : AutheticationService, private router : Router) 
+  constructor(private formBuilder : FormBuilder, private toast : ToastService, private auth : AutheticationService, private router : Router, private platform: Platform) 
   {
     this.form = this.formBuilder.group({
       email: ['',
@@ -24,6 +26,7 @@ export class LoginPage implements OnInit {
         ]],
       password: ['', [Validators.required]]
     })
+
   }
 
   // ||====|| Eventos ||====||
@@ -63,7 +66,7 @@ export class LoginPage implements OnInit {
       this.toast.showMessage('¡Tienes errores en los campos!')
     }
   }
-
+  
   public onFillFields(emailQuickAccess : string, passwordQuickAccess : string)
   {
     this.form.setValue(
