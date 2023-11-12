@@ -7,10 +7,6 @@ import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 export class QRReaderService 
 {
 
-  constructor() 
-  {
-  }
-
   async readQR()
   {
     await BarcodeScanner.checkPermission({force : true})
@@ -28,5 +24,13 @@ export class QRReaderService
     await BarcodeScanner.showBackground();
     document.querySelector('body')?.classList.remove('scanner-active');
   }
+
+  translateQR(data : string)
+  {
+    let dataTranslated = data.replace(/&#34;/g, '"');
+    dataTranslated = dataTranslated.replace(/&#13;&#10;/g, '');
+    return dataTranslated;
+  }
+
 
 }

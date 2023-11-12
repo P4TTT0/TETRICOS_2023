@@ -1,12 +1,32 @@
-<ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label>Nombre</ion-label>
-      <ion-label>Fecha</ion-label>
-    </ion-item>
-    <ion-item *ngFor="let usuario of listaEspera">
-      <ion-label>{{ usuario.nombre }}</ion-label>
-      <ion-label>{{ usuario.Timestamp }}</ion-label>
-    </ion-item>
-  </ion-list>
+<ion-content [fullscreen]="true">
+  <app-nav-bar></app-nav-bar>
+  <div class="background">
+    <div class="back-button-container">
+      <ion-button (click)="onBackClick()" class="back-button" expand="block" fill="clear" shape="round">
+        <i class="bi bi-arrow-left"></i>
+      </ion-button>
+    </div>
+    <div class="users-container">
+      <div>
+        <h1>Lista de Espera</h1>
+      </div>
+      <div class="users">
+        <div class="user-container"*ngFor="let user of this.listaEspera">
+          <div>
+            <i class="bi bi-person-circle"></i>
+            <span>@{{user.name}}</span>
+            <p>{{convertToPastTime(user.Timestamp)}}</p>
+            <button  type="button" (click)="onAssignClick(user,false)" class="btn btn-light button-option button-reject" >
+              <i class="bi bi-x"></i>
+              <span>ELIMINAR</span>
+            </button>
+            <button type="button" (click)="onAssignClick(user,true)" class="btn btn-light button-option button-accept" >
+              <i class="bi bi-check"></i>
+              <span>   ASIGNAR</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { user } from '@angular/fire/auth';
 import { addDoc, collection, Firestore, getDoc, getDocs, updateDoc, collectionData, doc, query, where, orderBy, setDoc, onSnapshot, Timestamp } from
 '@angular/fire/firestore';
+import { deleteDoc } from 'firebase/firestore';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
@@ -215,9 +217,9 @@ export class DataService {
     return userUID;
   }
   
-  public async saveUserWaitingList(userUID : string, userData : any)
+  public async saveUserWaitingList(userUID : any, userData : any)
   {
-    const userCollection = collection(this.firestore, 'UsersWaitingList');
+    const userCollection = collection(this.firestore, 'UsersOnLocal');
     const docRef = doc(userCollection, userUID);
 
     userData.Timestamp = Timestamp.now().toDate();
@@ -226,8 +228,53 @@ export class DataService {
   }
  
   public getUsersWaitingList(): Observable<any[]> {
-    const userCollection = collection(this.firestore,"UsersWaitingList");
+    const userCollection = collection(this.firestore,"UsersOnLocal");
     const q = query(userCollection, orderBy('Timestamp', 'desc'));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
+  }
+
+  public async getUserOnLocalByUserName(userName : string)
+  {
+    const userCollection = collection(this.firestore, 'UsersOnLocal');
+    const q = query(userCollection, where('name', '==', userName));
+    const querySnapshot = await getDocs(q);
+    const userDoc = querySnapshot.docs[0];
+    const user = {
+      data : userDoc.data,
+      UID : userDoc.id
+    }
+    return user;
+  }
+
+  public async UpdateWaitingUser(userName: string, assigned : boolean): Promise<void> {
+    const userCollection = collection(this.firestore, 'UsersOnLocal');
+    let userUID = (await this.getUserOnLocalByUserName(userName)).UID;
+    const docRef = doc(userCollection, userUID);
+
+    if(assigned)
+    {
+      await updateDoc(docRef,
+      {
+        state : 'assigned'
+      })
+    }
+    else
+    {
+      await deleteDoc(docRef);
+    }
+  }
+
+  public  getUserWaitingStatus(userName : string): Observable<any[]> {
+    const userCollection = collection(this.firestore,"UsersOnLocal");
+    const q = query(userCollection, where('name','==',userName));
 
     return new Observable<any[]>((observer) => {
       const unsubscribe = onSnapshot(q, (querySnapshot) => {
