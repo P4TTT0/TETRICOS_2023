@@ -31,11 +31,12 @@ export class PushNotificationService {
   async inicializar(): Promise<void> {
     this.addListeners();
     let userToken = await this.data.getUserTokenByUserName(this.auth.userName);
-    console.log(userToken);
     const result = await PushNotifications.requestPermissions();
-    await PushNotifications.register();
-    if (this.platform.is('capacitor') && userToken == '') {
-      if (result.receive === 'granted') {
+    if (this.platform.is('capacitor') && userToken == '') 
+    {
+      if (result.receive === 'granted') 
+      {
+        await PushNotifications.register();
       }
     }
   }
