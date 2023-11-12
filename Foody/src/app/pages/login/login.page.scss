@@ -67,6 +67,8 @@ form
 .anon-button
 {
     --background: #B84141; 
+    margin-bottom: 50px;
+    font-size: 20px;
 }
 
 .login-button
@@ -117,9 +119,13 @@ ion-list
 p
 {
     font-size: 20px;
+    color: #271F30
 }
 
 .buttons-container
 {
     display: flex;
+    ion-button{
+        --background: #271F30
+    }
 }

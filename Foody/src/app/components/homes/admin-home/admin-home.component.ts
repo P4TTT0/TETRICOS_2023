@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { addDoc, collection, Firestore, getDoc, getDocs, updateDoc, collectionData, doc, query, where, orderBy, setDoc, onSnapshot, Timestamp } from
-'@angular/fire/firestore';
-import { firstValueFrom } from 'rxjs';
+import { NavController } from '@ionic/angular';
+import { Firestore, collection, doc, docData, updateDoc, where, query, onSnapshot } from '@angular/fire/firestore';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 import { PushNotificationService } from 'src/app/services/push-notifications.service';
@@ -17,7 +16,7 @@ export class AdminHomeComponent  implements OnInit {
   private lastDocument : any;
   private notificacionEnviada : boolean = false;
 
-  constructor(private router : Router, private auth : AutheticationService, private push : PushNotificationService, private data : DataService, private firestore : Firestore) { }
+  constructor(private router : Router, private auth : AutheticationService, private push : PushNotificationService, private data : DataService, private firestore : Firestore, private navCtrl : NavController) { }
 
   ngOnInit() {
     this.startUserListener();
@@ -64,5 +63,9 @@ export class AdminHomeComponent  implements OnInit {
       .subscribe((data) => {
         console.log('hola sas' + data);
       });
+  }
+  public async onBackClick()
+  {
+    this.navCtrl.back();
   }
 }
