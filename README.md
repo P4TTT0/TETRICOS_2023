@@ -50,4 +50,4 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[HOMES Usuario/Anon]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[Envio de MAILS]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[Gestión ingreso local]**: | Done | 11 nov. - 11 nov. | **[✔️]**
-- **[Reviso de pantallas]**: | Doing | 11 nov. - ??? | **[🔨]**
+- **[Reviso de pantallas]**: | Doing | 11 nov. - 11 nov. | **[✔️]**
