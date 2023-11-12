@@ -38,16 +38,17 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[Realizar splash APP]**: | Done | 04 nov. - 04 nov. | **[✔]**
 - **[Verificacion de MAIL]**: | Done | 04 nov. - 04 nov. | **[✔]**
 - **[Validacion de cuentas]**: | Done | 04 nov. - 05 nov. | **[✔]**
-- **[Push notification ADMIN]**: | Doing | 11 nov. - ??? | **[🔨]**
+- **[Push notification ADMIN]**: | Done | 11 nov. - 12 nov. | **[✔️]**
 
 #### Tulis Curra Luis (BETA):
 - **[Alta de clientes]**: | Done | 02 nov. - 04 nov. | **[✔️]**
 - **[QR Ingreso local]**: | Done | 11 nov. - 11 nov. | **[✔️]**
-- **[Metre asigna Mesa]**: | Doing | 11 nov. - ??? | **[🔨]**
+- **[QR Lista espera]**: | Done | 11 nov. - 12 nov. | **[✔️]**
 
 #### Nani Renato (GAMMA):
 - **[Log-In Anonimo]**: | Done | 10 nov. - 11 nov. | **[✔️]**
 - **[HOMES Usuario/Anon]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[Envio de MAILS]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[Gestión ingreso local]**: | Done | 11 nov. - 11 nov. | **[✔️]**
-- **[Reviso de pantallas]**: | Doing | 11 nov. - 11 nov. | **[✔️]**
+- **[Reviso de pantallas]**: | Done | 11 nov. - 11 nov. | **[✔️]**
+- **[Metre asigna mesa]**: | Doing | 12 nov. - ??? | **[🔨]**
