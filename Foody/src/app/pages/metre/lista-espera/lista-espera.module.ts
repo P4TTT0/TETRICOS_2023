@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ListaEsperaPageRoutingModule } from './lista-espera-routing.module';
 
 import { ListaEsperaPage } from './lista-espera.page';
+import { SharedModule } from "../../../modules/shared/shared.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ListaEsperaPageRoutingModule
-  ],
-  declarations: [ListaEsperaPage]
+    declarations: [ListaEsperaPage],
+    imports: [
+        CommonModule,
+        FormsModule,
+        IonicModule,
+        ListaEsperaPageRoutingModule,
+        SharedModule
+    ]
 })
 export class ListaEsperaPageModule {}

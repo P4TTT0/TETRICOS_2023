@@ -7,6 +7,9 @@
     </div>   
     <div *ngIf="this.auth.rol == 'Usuario' || this.auth.rol ==  'Anon' ">
       <app-validated></app-validated>
-    </div>  
+    </div>    
+    <div *ngIf="this.auth.rol == 'Metre'">
+      <app-metre-home></app-metre-home>
+    </div> 
   </ng-template>
 </ion-content>
