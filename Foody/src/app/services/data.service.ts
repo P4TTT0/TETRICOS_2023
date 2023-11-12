@@ -33,6 +33,28 @@ export class DataService {
     return userDoc.data();
   }
 
+
+  public async getUserTokenByUserName(userName : string)
+  {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('UserName', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+    const userDoc = querySnapshot.docs[0];
+    const userData = userDoc.data();
+  
+    if (userData && userData['token']) {
+      console.log(userData['token']);
+      return userData['token'];
+    } else {
+      return '';
+    }
+  }
+
   /**
    * The function saves user information to a Firestore database.
    * @param {string} userUID - The userUID parameter is a string that represents the unique identifier
@@ -95,6 +117,18 @@ export class DataService {
     } else {
       return null;
     }
+  }
+
+  public async GetUserUIDByUserName(userName: string): Promise<string | null> {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('UserName', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) {
+      return null;
+    }
+    const userDoc = querySnapshot.docs[0];
+    return userDoc.id;
   }
 
  /**

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "560995195239",
+    "project_id": "tetricos-2023",
+    "storage_bucket": "tetricos-2023.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:560995195239:android:92665984c15768ff4bf7c2",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRqr9wuLhOKTa6CX3dRZXBBdc2M60GXcg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
