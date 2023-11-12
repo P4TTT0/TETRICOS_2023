@@ -5,7 +5,7 @@
     <div *ngIf="this.auth.rol == 'Admin'">
       <app-admin-home></app-admin-home>
     </div>   
-    <div *ngIf="this.auth.rol == 'Usuario' || 'Anon' ">
+    <div *ngIf="this.auth.rol == 'Usuario' || this.auth.rol ==  'Anon' ">
       <app-validated></app-validated>
     </div>    
     <div *ngIf="this.auth.rol == 'Metre'">

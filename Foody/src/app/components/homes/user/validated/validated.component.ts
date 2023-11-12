@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 import { QRReaderService } from 'src/app/services/qrreader.service';
@@ -15,7 +16,7 @@ export class ValidatedComponent  implements OnInit
   inWaitingList = false;
   userData : any;
 
-  constructor(private QRReader : QRReaderService, private toast : ToastService, private auth : AutheticationService, private data : DataService) 
+  constructor(private navCtrl : NavController, private QRReader : QRReaderService, private toast : ToastService, private auth : AutheticationService, private data : DataService) 
   {
     
   }
@@ -81,5 +82,10 @@ export class ValidatedComponent  implements OnInit
       }
       
     }
+  }
+
+  public async onBackClick()
+  {
+    this.navCtrl.back();
   }
 }

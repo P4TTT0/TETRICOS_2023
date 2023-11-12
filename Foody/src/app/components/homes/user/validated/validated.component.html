@@ -5,6 +5,8 @@
       <button *ngIf="!userData" type="button" class="btn btn-light button" (click)="ingresarLocal()">Ingresar a la lista de espera</button>
       <p *ngIf="userData.state == 'waiting'">ESPERANDO...</p>
       <p *ngIf="userData.state == 'assigned'">TOMAR MESA...</p>
+
+      <button type="button" class="btn btn-light button" (click)="onBackClick()">VOLVER</button>
     </div>
   </div>
 </div>

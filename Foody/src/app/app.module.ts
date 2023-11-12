@@ -12,6 +12,8 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { environment } from 'src/environments/environment';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +22,7 @@ import { environment } from 'src/environments/environment';
     FormsModule, 
     ReactiveFormsModule, 
     AppRoutingModule, 
+    HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)), 
     provideAuth(() => getAuth()), 
     provideFirestore(() => getFirestore())],
