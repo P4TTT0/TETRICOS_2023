@@ -319,6 +319,20 @@ export class DataService {
       return () => unsubscribe();
     });
   }
+
+  public getMesas(): Observable<any[]> {
+    const mesasCollection = collection(this.firestore,"Mesas");
+    const q = query(mesasCollection, orderBy('numeroMesa', 'asc'));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const mesas = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(mesas);
+      });
+
+      return () => unsubscribe();
+    });
+  }
   
   public async GetUserRolByUserName(userName: string): Promise<string | null> {
     const userCollection = collection(this.firestore, 'User');
@@ -338,5 +352,15 @@ export class DataService {
     } else {
       return null;
     }
+  }
+  public async setMesa(userName: string, mesa : number): Promise<void> {
+    const userCollection = collection(this.firestore, 'UsersOnLocal');
+    let userUID = (await this.getUserOnLocalByUserName(userName)).UID;
+    const docRef = doc(userCollection, userUID);
+    
+    await updateDoc(docRef,
+    {
+      mesa : mesa
+    })    
   }
 }
