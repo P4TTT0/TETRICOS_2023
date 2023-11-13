@@ -8,15 +8,16 @@ import { ListaEsperaPageRoutingModule } from './lista-espera-routing.module';
 
 import { ListaEsperaPage } from './lista-espera.page';
 import { SharedModule } from "../../../modules/shared/shared.module";
+import { AsignarMesaComponent } from 'src/app/components/mesas/asignar-mesa/asignar-mesa.component';
 
 @NgModule({
-    declarations: [ListaEsperaPage],
+    declarations: [ListaEsperaPage, AsignarMesaComponent],
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
         ListaEsperaPageRoutingModule,
-        SharedModule
+        SharedModule,        
     ]
 })
 export class ListaEsperaPageModule {}

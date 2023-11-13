@@ -18,7 +18,8 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
-  },  {
+  },
+  {
     path: 'validar-usuario',
     loadChildren: () => import('./pages/admin/validar-usuario/validar-usuario.module').then( m => m.ValidarUsuarioPageModule)
   },
@@ -29,8 +30,7 @@ const routes: Routes = [
   {
     path: 'lista-espera',
     loadChildren: () => import('./pages/metre/lista-espera/lista-espera.module').then( m => m.ListaEsperaPageModule)
-  },
-
+  },  
 
 ];
 

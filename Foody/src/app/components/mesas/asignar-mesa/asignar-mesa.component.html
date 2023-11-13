@@ -1,0 +1,15 @@
+<div class="background">
+  <div class="user-name">
+    <span>@{{user.name}}</span>
+  </div>  
+  <h1>Mesas disponibles:</h1>
+  <ion-button (click)="asignarMesa(mesa.numeroMesa)" [disabled]="mesa.usuarioAsignado" class="info-container" *ngFor="let mesa of this.mesas">      
+    {{ mesa.numeroMesa }}
+  </ion-button>
+  <div class="buttons-container">
+    <button (click)="asignarMesa(null)" type="button" class="btn btn-light button-option button-back">
+      <i class="bi bi-arrow-left"></i>
+      <span>VOLVER</span>
+    </button>    
+  </div>
+</div>

@@ -11,7 +11,7 @@
         <h1>Lista de Espera</h1>
       </div>
       <div class="users">
-        <div class="user-container"*ngFor="let user of this.listaEspera">
+        <div [hidden]="user.state != 'waiting'" class="user-container"*ngFor="let user of this.listaEspera">
           <div>
             <i class="bi bi-person-circle"></i>
             <span>@{{user.name}}</span>
@@ -22,7 +22,7 @@
             </button>
             <button type="button" (click)="onAssignClick(user,true)" class="btn btn-light button-option button-accept" >
               <i class="bi bi-check"></i>
-              <span>   ASIGNAR</span>
+              <span>ASIGNAR</span>
             </button>
           </div>
         </div>

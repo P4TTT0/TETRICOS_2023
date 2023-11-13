@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { Timestamp } from 'firebase/firestore';
+import { AsignarMesaComponent } from 'src/app/components/mesas/asignar-mesa/asignar-mesa.component';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 
@@ -15,7 +16,7 @@ export class ListaEsperaPage implements OnInit {
 
   usersOnLocal : any;
 
-  constructor(private data : DataService, private navCtrl : NavController, private auth : AutheticationService) { }
+  constructor(private data : DataService, public modalController: ModalController, private navCtrl : NavController, private auth : AutheticationService) { }
 
   async ngOnInit() {
     this.data.getUsersWaitingList().subscribe(users => 
@@ -50,9 +51,22 @@ export class ListaEsperaPage implements OnInit {
     this.navCtrl.back();
   }
  
-  onAssignClick(user : any, assigned : boolean)
-  {
-    this.data.UpdateWaitingUser(user.name,assigned);
+  async onAssignClick(user : any, assigned : boolean)
+  {    
+    if(assigned)
+    {
+      const modal = await this.modalController.create({
+        component: AsignarMesaComponent,
+        componentProps: {
+          user: user,
+        },
+      });
+
+      await modal.present();
+    }
+    else{
+      this.data.UpdateWaitingUser(user.name,assigned);
+    }
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
@@ -16,7 +17,12 @@ export class ValidatedComponent  implements OnInit
   inWaitingList = false;
   userData : any;
 
-  constructor(private navCtrl : NavController, private QRReader : QRReaderService, private toast : ToastService, private auth : AutheticationService, private data : DataService) 
+  constructor(private navCtrl : NavController, 
+    private QRReader : QRReaderService, 
+    private toast : ToastService, 
+    private auth : AutheticationService, 
+    private data : DataService,
+    private router : Router) 
   {
     
   }
@@ -87,5 +93,44 @@ export class ValidatedComponent  implements OnInit
   public async onBackClick()
   {
     this.navCtrl.back();
+  }
+
+  async reclamarMesa()
+  {
+    this.QRReader.hideBackground();
+    const data = await this.QRReader.readQR();
+
+    if(data?.hasContent)
+    {
+      this.QRReader.showBackground();
+      let dataString = this.QRReader.translateQR(data.content);
+      let dataJSON = JSON.parse(dataString)
+
+      try
+      {
+        if(dataJSON.Type == 'Mesa')
+        {
+          if(dataJSON.Number == this.userData.mesa)
+          {
+            this.router.navigateByUrl('mesa');
+          }
+          else
+          {
+            this.toast.showMessage('Por favor, escanee el codigo de mesa que se le asignó', 4000)
+          }
+        }
+        else
+        {
+          if(dataJSON.Type == 'Ingreso al local')
+          {
+            this.toast.showMessage('Usted ya se encuentra dentro del local...', 4000)
+          }
+        }
+      }
+      catch(error)
+      {
+        this.toast.showMessage('Error. . . Ese QR no es parte de nuestro establecimiento')
+      }
+    }
   }
 }
