@@ -1,0 +1,35 @@
+<ion-content [fullscreen]="true">
+  <app-nav-bar></app-nav-bar>
+  <div class="background">
+    <div class="title">
+      <div class="back-button-container">
+        <ion-button class="back-button" (click)="onBackClick()" expand="block" fill="clear" shape="round">
+          <i class="bi bi-arrow-left"></i>
+        </ion-button>
+      </div>
+
+      <div class="container-fluid" style="margin-top: 0px;">
+        <div class="title-container">
+            <span>Chat con mozo</span>
+            <span>#{{this.mesa}}</span>
+        </div>
+        <div class="message-container">
+
+            <div #messageElement [ngClass]="{'sub-message-user': message.UserName == auth.userName, 'sub-message': message.UserName != auth.userName}"
+                *ngFor="let message of messages">
+                <div
+                    [ngClass]="{'message': message.UserName != auth.userName, 'message-user': message.UserName == auth.userName}">
+                    <span><strong>{{ message.UserName }}</strong> ({{ message.Timestamp.toDate() | date: 'HH:mm:ss' }}):
+                        {{ message.Message }}</span>
+                </div>
+            </div>
+        </div>
+
+        <form [formGroup]="chatForm" (ngSubmit)="sendMessage()">
+            <input class="input-message" type="text" formControlName="message" placeholder="Escribe tu mensaje" />
+            <button type="submit" class="btn btn-success">Enviar</button>
+        </form>
+    </div>
+    </div>
+  </div>
+</ion-content>

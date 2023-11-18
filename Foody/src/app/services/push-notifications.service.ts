@@ -5,7 +5,7 @@ import {
   PushNotificationSchema,
   Token,
 } from '@capacitor/push-notifications';
-import { Platform } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { Firestore, collection, doc, docData, updateDoc } from '@angular/fire/firestore';
 import { LocalNotifications } from '@capacitor/local-notifications';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +13,8 @@ import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { DataService } from './data.service';
 import { AutheticationService } from './authetication.service';
+import { ToastService } from './toast.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +26,9 @@ export class PushNotificationService {
     private firestore: Firestore,
     private http: HttpClient,
     private data : DataService,
-    private auth : AutheticationService
+    private auth : AutheticationService,
+    private toast : ToastService,
+    private router : Router,
   ) {
   }
 
@@ -89,18 +93,18 @@ export class PushNotificationService {
         console.log('data: ', notification.data);
         //Esto se hace en el caso de que querramos que nos aparezca la notificacion en la task bar del celular ya que por
         //defecto las push en primer plano no lo hacen, de no ser necesario esto se puede sacar.
-        LocalNotifications.schedule({
-          notifications: [
-            {
-              title: notification.title || '',
-              body: notification.body || '',
-              id: new Date().getMilliseconds(),
-              extra: {
-                data: notification.data,
-              },
-            },
-          ],
-        });
+        // LocalNotifications.schedule({
+        //   notifications: [
+        //     {
+        //       title: notification.title || '',
+        //       body: notification.body || '',
+        //       id: new Date().getMilliseconds(),
+        //       extra: {
+        //         data: notification.data,
+        //       },
+        //     },
+        //   ],
+        // });
       }
     );
 
@@ -114,6 +118,14 @@ export class PushNotificationService {
           notification.actionId,
           notification.notification
         );
+        const action = notification.notification.data.do;
+        if(action == 'navigate')
+        {
+          const value = JSON.parse(notification.notification.data.value);
+          const url = value.url
+          const mesa = value.mesa
+          this.router.navigate([url, mesa])
+        }
       }
     );
 

@@ -1,0 +1,29 @@
+<ion-content [fullscreen]="true">
+  <app-nav-bar></app-nav-bar>
+  <div class="background">
+    <div class="title">
+      <div class="back-button-container">
+        <ion-button class="back-button" (click)="onBackClick()" expand="block" fill="clear" shape="round">
+          <i class="bi bi-arrow-left"></i>
+        </ion-button>
+      </div>
+      <h1>CATEGORIAS</h1>
+      <div class="mesa-container">
+        <span>#1</span>
+      </div>
+    </div>
+    <div class="categorias-container">
+      <div class="row">
+        <ion-button (click)="onCategoryClick(category.Name)" class="categoria col-sm-4" *ngFor="let category of this.categorys">
+          <span>{{category.Name}}</span>
+        </ion-button>
+      </div>
+    </div>
+      <div class="precio-container">
+        <span>$0</span>
+        <ion-button class="pay-button" expand="block" fill="clear" shape="round">
+          <i class="bi bi-wallet"></i>
+        </ion-button>
+      </div>
+  </div>
+</ion-content>

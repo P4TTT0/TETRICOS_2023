@@ -250,6 +250,74 @@ export class DataService {
     const userUID = userDoc.id;
     return userUID;
   }
+
+  public async getCategorys()
+  {
+    const categoryCollection = collection(this.firestore, 'Category');
+    const querySnapshot = await getDocs(categoryCollection);
+    const categorys = querySnapshot.docs.map(doc => doc.data());
+    return categorys;
+  }
+
+  public async getProductByCategory(category : string)
+  {
+    const userCollection = collection(this.firestore, 'Product');
+    const q = query(userCollection, where('Category', '==', category));
+    const querySnapshot = await getDocs(q);
+    const products =  querySnapshot.docs.map(doc => doc.data());
+    return products;
+  }
+
+  public async getMozosTokens() {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Rol', '==', 'Mozo'));
+    const querySnapshot = await getDocs(q);
+    const mozosTokens = querySnapshot.docs.map(doc => doc.data()['token']);
+  
+    return mozosTokens;
+  }
+
+  public async getProductByProductName(productName : string) {
+    const userCollection = collection(this.firestore, 'Product');
+    const q = query(userCollection, where('Name', '==', productName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+    const userDoc = querySnapshot.docs[0];
+    const userData = userDoc.data();
+
+    return userData;
+  }
+
+  public async sendMessage(message : string, userName : string, mesa : number)
+  {
+    const messageCollection = collection(this.firestore, 'Message');
+    const timestamp = new Date();
+    await addDoc(messageCollection, 
+      {
+        Message: message,
+        UserName: userName,
+        Timestamp: timestamp,
+        Mesa: mesa
+      });
+  }
+  
+  public subscribeToMessages(): Observable<any[]> {
+    const messageCollection = collection(this.firestore, 'Message');
+    const q = query(messageCollection, orderBy('Timestamp', 'asc'));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const messages = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(messages);
+      });
+
+      return () => unsubscribe();
+    });
+  }
   
   public async saveUserWaitingList(userUID : any, userData : any)
   {
@@ -353,6 +421,27 @@ export class DataService {
       return null;
     }
   }
+
+  public async GetUserTableByUserName(userName: string): Promise< | null> {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('UserName', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+    const userDoc = querySnapshot.docs[0];
+    const userData = userDoc.data();
+  
+    if (userData && userData['Mesa']) {
+      console.log(userData['Mesa']);
+      return userData['Mesa'];
+    } else {
+      return null;
+    }
+  }
+
   public async setMesa(userName: string, mesa : number): Promise<void> {
     const userCollection = collection(this.firestore, 'UsersOnLocal');
     let userUID = (await this.getUserOnLocalByUserName(userName)).UID;

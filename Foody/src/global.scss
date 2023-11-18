@@ -60,3 +60,24 @@ body.scanner-active {
     --background: transparent;
     --ion-background-color: transparent;
   }
+
+  .back-button-container
+{
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.back-button
+{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    border: none;
+    background-color: #CA6042;
+    i
+    {
+        font-size: 25px;
+    }
+}

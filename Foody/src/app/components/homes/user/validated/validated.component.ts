@@ -16,6 +16,7 @@ export class ValidatedComponent  implements OnInit
 
   inWaitingList = false;
   userData : any;
+  public usandoQR : boolean = true;
 
   constructor(private navCtrl : NavController, 
     private QRReader : QRReaderService, 
@@ -50,11 +51,13 @@ export class ValidatedComponent  implements OnInit
 
   async ingresarLocal()
   {
+    this.usandoQR = false;
     this.QRReader.hideBackground();
     const data = await this.QRReader.readQR();
 
     if(data?.hasContent)
     {
+      this.usandoQR = true;
       this.QRReader.showBackground();
       let dataString = this.QRReader.translateQR(data.content);
       let dataJSON = JSON.parse(dataString)
@@ -97,11 +100,13 @@ export class ValidatedComponent  implements OnInit
 
   async reclamarMesa()
   {
+    this.usandoQR = false;
     this.QRReader.hideBackground();
     const data = await this.QRReader.readQR();
 
     if(data?.hasContent)
     {
+      this.usandoQR = true;
       this.QRReader.showBackground();
       let dataString = this.QRReader.translateQR(data.content);
       let dataJSON = JSON.parse(dataString)
@@ -112,7 +117,7 @@ export class ValidatedComponent  implements OnInit
         {
           if(dataJSON.Number == this.userData.mesa)
           {
-            this.router.navigateByUrl('mesa');
+            this.router.navigateByUrl('mesa-general');
           }
           else
           {
