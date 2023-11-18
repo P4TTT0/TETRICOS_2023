@@ -353,7 +353,7 @@ export class DataService {
       return null;
     }
   }
-  public async setMesa(userName: string, mesa : number): Promise<void> {
+  public async setMesa(userName: string, mesa : string): Promise<void> {
     const userCollection = collection(this.firestore, 'UsersOnLocal');
     let userUID = (await this.getUserOnLocalByUserName(userName)).UID;
     const docRef = doc(userCollection, userUID);
@@ -363,4 +363,30 @@ export class DataService {
       mesa : mesa
     })    
   }
+
+  public async getUserFromMesa(numeroMesa : string)
+  {
+    const userCollection = collection(this.firestore, 'UsersOnLocal');
+    const q = query(userCollection, where('mesa', '==', numeroMesa));
+    const querySnapshot = await getDocs(q);
+    const userDoc = querySnapshot.docs[0];
+    return userDoc.data();
+  }
+
+  public async getPedidosFromUser(userName : string) : Promise<any | null>
+  {
+    const userCollection = collection(this.firestore, 'Pedido');
+    const q = query(userCollection, where('PedidoDe', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const pedidos = querySnapshot.docs.map(doc => doc.data());
+
+    return pedidos;
+  }
+
 }

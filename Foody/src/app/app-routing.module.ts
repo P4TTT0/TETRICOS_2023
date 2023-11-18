@@ -30,8 +30,11 @@ const routes: Routes = [
   {
     path: 'lista-espera',
     loadChildren: () => import('./pages/metre/lista-espera/lista-espera.module').then( m => m.ListaEsperaPageModule)
-  },  
-
+  },   {
+    path: 'pedido/:parametro',
+    loadChildren: () => import('./pages/cocina/pedido/pedido.module').then( m => m.PedidoPageModule)
+  },
+ 
 ];
 
 @NgModule({

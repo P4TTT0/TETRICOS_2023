@@ -10,6 +10,7 @@ import { SharedModule } from '../modules/shared/shared.module';
 import { NoValidatedComponent } from '../components/homes/user/no-validated/no-validated.component';
 import { ValidatedComponent } from '../components/homes/user/validated/validated.component';
 import { MetreHomeComponent } from '../components/homes/metre-home/metre-home.component';
+import { CocineroHomeComponent } from '../components/homes/cocinero-home/cocinero-home.component';
 
 
 @NgModule({
@@ -20,6 +21,6 @@ import { MetreHomeComponent } from '../components/homes/metre-home/metre-home.co
     HomePageRoutingModule, 
     SharedModule
   ],
-  declarations: [HomePage, AdminHomeComponent, NoValidatedComponent, ValidatedComponent, MetreHomeComponent]
+  declarations: [HomePage, AdminHomeComponent, NoValidatedComponent, ValidatedComponent, MetreHomeComponent, CocineroHomeComponent]
 })
 export class HomePageModule {}
