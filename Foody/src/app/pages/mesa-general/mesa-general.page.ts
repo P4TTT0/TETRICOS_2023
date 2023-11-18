@@ -15,7 +15,7 @@ export class MesaGeneralPage implements OnInit {
 
   onChatClick()
   {
-    this.router.navigateByUrl('chat-mozo');
+    this.router.navigate(['chat-mozo', 1]);
   }
 
   onMenuClick()

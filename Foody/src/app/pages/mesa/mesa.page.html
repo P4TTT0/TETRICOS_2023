@@ -7,18 +7,18 @@
           <i class="bi bi-arrow-left"></i>
         </ion-button>
       </div>
-      <h1>CATEGORIAS</h1>
+      <h1 style="color: #000; margin: 0px 10px;">CATEGORIAS</h1>
       <div class="mesa-container">
-        <span>#1</span>
+        <span>{{this.auth}}</span>
       </div>
     </div>
-    <div class="categorias-container">
-      <div class="row">
-        <ion-button (click)="onCategoryClick(category.Name)" class="categoria col-sm-4" *ngFor="let category of this.categorys">
-          <span>{{category.Name}}</span>
-        </ion-button>
+      <div class="row categorias-container">
+        <div class="col-sm-6 col-6" *ngFor="let category of this.categorys">
+          <ion-button (click)="onCategoryClick(category.Name)" class="categoria" expand="block" fill="clear" shape="round"> 
+            <span>{{category.Name}}</span>
+          </ion-button>
+        </div>
       </div>
-    </div>
       <div class="precio-container">
         <span>$0</span>
         <ion-button class="pay-button" expand="block" fill="clear" shape="round">

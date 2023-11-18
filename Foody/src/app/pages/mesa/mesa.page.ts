@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { DataService } from 'src/app/services/data.service';
 export class MesaPage implements OnInit {
   categorys : any;
 
-  constructor(private data : DataService, private navCtrl : NavController, private router : Router) { }
+  constructor(private data : DataService, private navCtrl : NavController, private router : Router, public auth : AutheticationService) { }
 
   async ngOnInit() 
   {

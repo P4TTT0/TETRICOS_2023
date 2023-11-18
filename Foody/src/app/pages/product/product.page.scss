@@ -24,11 +24,13 @@
 
 .title
 {
+    width: 100%;
     padding: 10px;
     text-align: center;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color: #1d0c0f;
 }
 
 .row 
@@ -120,15 +122,26 @@ swiper-slide
 
 .time-container
 {
+    text-align: center;
     padding: 10px;
     background-color: #70303910;
     border-radius: 20px;
     margin-bottom: 20px;
+    span
+    {
+        color: #1d0c0f;
+        font-size: 10px;
+    }
 }
 
 .desc
 {
     margin-bottom: 30px;
+    p
+    {
+        color: #1d0c0f;
+        font-size: 25px;
+    }
 }
 
 .cantidad
@@ -139,6 +152,14 @@ swiper-slide
     background-color: #70303920;
     border-radius: 20px;
     font-size: 30px;
+    i
+    {
+        color: #1d0c0f;
+    }
+    span
+    {
+        color: #1d0c0f;
+    }
 }
 ion-button i
 {

@@ -36,13 +36,7 @@ export class PushNotificationService {
     this.addListeners();
     let userToken = await this.data.getUserTokenByUserName(this.auth.userName);
     const result = await PushNotifications.requestPermissions();
-    if (this.platform.is('capacitor') && userToken == '') 
-    {
-      if (result.receive === 'granted') 
-      {
-        await PushNotifications.register();
-      }
-    }
+    await PushNotifications.register();
   }
 
   async getUser() 
