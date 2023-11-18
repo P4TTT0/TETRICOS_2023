@@ -39,12 +39,13 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[Verificacion de MAIL]**: | Done | 04 nov. - 04 nov. | **[✔]**
 - **[Validacion de cuentas]**: | Done | 04 nov. - 05 nov. | **[✔]**
 - **[Push notification ADMIN]**: | Done | 11 nov. - 12 nov. | **[✔️]**
-- **[Gestion de pedido]**: | Doing | 12 nov. - ??? | **[🔨]**
+- **[Gestion de pedido]**: | Done | 12 nov. - 18 nov. | **[✔️]**
 
 #### Tulis Curra Luis (BETA):
 - **[Alta de clientes]**: | Done | 02 nov. - 04 nov. | **[✔️]**
 - **[QR Ingreso local]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[QR Lista espera]**: | Done | 11 nov. - 12 nov. | **[✔️]**
+- **[Arreglo error de QR]**: | Done | 18 nov. - 18 nov. | **[✔️]**
 
 #### Nani Renato (GAMMA):
 - **[Log-In Anonimo]**: | Done | 10 nov. - 11 nov. | **[✔️]**
@@ -53,3 +54,5 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[Gestión ingreso local]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[Reviso de pantallas]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[Metre asigna mesa]**: | Done | 12 nov. - 12 nov. | **[✔️]**
+- **[Arreglos estéticos]**: | Done | 18 nov. - 18 nov. | **[✔️]**
+- **[Encuesta]**: | Doing | 18 nov. - ??? | **[🔨]**
