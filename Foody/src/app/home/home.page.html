@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [ngClass]="{'usingQR' : usingQR}">
   <app-nav-bar></app-nav-bar>  
   <div *ngIf="this.auth.validationState == null; else elseBlock"><app-no-validated></app-no-validated></div>
   <ng-template #elseBlock>
@@ -6,7 +6,7 @@
       <app-admin-home></app-admin-home>
     </div>   
     <div *ngIf="this.auth.rol == 'Usuario' || this.auth.rol ==  'Anon' ">
-      <app-validated></app-validated>
+      <app-validated (usingQRChange)="onUsingQRChange($event)"></app-validated>
     </div>    
     <div *ngIf="this.auth.rol == 'Metre'">
       <app-metre-home></app-metre-home>

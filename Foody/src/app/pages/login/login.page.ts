@@ -15,6 +15,7 @@ export class LoginPage implements OnInit {
 
   //Variable para validar los campos del login.
   public form : FormGroup;
+  public logged : boolean = false;
 
   // ||====|| Constructor ||====||
   constructor(private formBuilder : FormBuilder, private toast : ToastService, private auth : AutheticationService, private router : Router, private platform: Platform) 
@@ -30,7 +31,10 @@ export class LoginPage implements OnInit {
   }
 
   // ||====|| Eventos ||====||
-  ngOnInit() {}
+  ngOnInit() 
+  {
+    this.logged = false
+  }
 
   // ||====|| Funciones || ====||
   
@@ -48,6 +52,7 @@ export class LoginPage implements OnInit {
       {
         if(user?.user?.emailVerified == true || this.form.controls['email'].value == 'admin@admin.com')
         {
+          this.logged = true;
           this.router.navigateByUrl('/home');
         }
         else
