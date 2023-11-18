@@ -19,6 +19,8 @@ export class AutheticationService {
   public userName : string = "";
   public validationState : boolean | null = null;
   public rol : string = "";
+  public mesaAsignada! : number;
+  public pedidoRealizado : boolean = false;
 
   // ||====|| Constructor ||====||
   constructor(public ngFireAuth : AngularFireAuth, private data : DataService) { }
@@ -46,6 +48,7 @@ export class AutheticationService {
       this.userName = await this.data.getUserNameByUID(uid);
       this.validationState = await this.data.getValidationStateByUID(uid);
       this.rol = await this.data.GetUserRolByUserName(this.userName) || '';
+      this.mesaAsignada = await this.data.GetUserTableByUserName(this.userName) || 0;
       this.logueado = true;
       return credential;
     } catch (error) {
