@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" *ngIf="!this.auth.pedidoRealizado">
   <app-nav-bar></app-nav-bar>
   <div class="background">
     <div class="title">
@@ -9,7 +9,7 @@
       </div>
       <h1 style="color: #000; margin: 0px 10px;">CATEGORIAS</h1>
       <div class="mesa-container">
-        <span>{{this.auth}}</span>
+        <span>{{this.auth.mesaAsignada}}</span>
       </div>
     </div>
       <div class="row categorias-container">
@@ -20,10 +20,29 @@
         </div>
       </div>
       <div class="precio-container">
-        <span>$0</span>
-        <ion-button class="pay-button" expand="block" fill="clear" shape="round">
+        <span>${{this.precioTotal}}</span>
+        <ion-button class="pay-button" (click)="onPayClick()"  expand="block" fill="clear" shape="round">
           <i class="bi bi-wallet"></i>
         </ion-button>
       </div>
+  </div>
+</ion-content>
+<ion-content  *ngIf="this.auth.pedidoRealizado">
+  <div class="background2">
+    <div class="title">
+      <h1 style="color: #000; margin: 0px 10px; font-size: 25px;">¡Pedido solicitado!</h1>
+      <div class="mesa-container">
+        <span>{{this.auth.mesaAsignada}}</span>
+      </div>
+    </div>
+    <div>
+      <p style="    font-size: 40px;
+      text-align: center; color: #1d0c0f;">Estamos gestionando su confirmación y preparación. Le informaremos en breve sobre el progreso. Agradecemos su paciencia.</p>
+    </div>
+    <div class="back-button-container" style="width: 100%;">
+      <ion-button style="width: 100%;" class="back-button" (click)="onBackClick()" expand="block" fill="clear" shape="round">
+        <i class="bi bi-arrow-left"></i>
+      </ion-button>
+    </div>
   </div>
 </ion-content>

@@ -50,6 +50,15 @@ const routes: Routes = [
     path: 'chat-mozo/:mesa',
     loadChildren: () => import('./pages/chat-mozo/chat-mozo.module').then( m => m.ChatMozoPageModule)
   },
+  {
+    path: 'detalle',
+    loadChildren: () => import('./pages/detalle-pedido/detalle-pedido.module').then( m => m.DetallePedidoPageModule)
+  },  {
+    path: 'pedidos',
+    loadChildren: () => import('./pages/mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
+
+
 
 
  

@@ -118,7 +118,14 @@ export class PushNotificationService {
           const value = JSON.parse(notification.notification.data.value);
           const url = value.url
           const mesa = value.mesa
-          this.router.navigate([url, mesa])
+          if(mesa)
+          {
+            this.router.navigate([url, mesa])
+          }
+          else
+          {
+            this.router.navigateByUrl(url);
+          }
         }
       }
     );

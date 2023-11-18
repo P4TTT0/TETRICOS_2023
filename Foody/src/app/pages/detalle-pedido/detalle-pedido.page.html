@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+  <div class="background" *ngIf="this.productos != null">
+    <div class="title">
+      <h1>Detalle pedido</h1>
+      <div class="mesa-container">
+        <span>#1</span>
+      </div>
+    </div>
+    <div class="categorias-container">
+      <div class="categoria"  *ngFor="let product of this.productos">
+        <img [src]="'data:image/png;base64,' + product.Image">
+          <span>{{product.NombreProducto}}</span>
+          <span>${{product.Price}}</span>
+          <span>x{{product.Cantidad}}</span>
+      </div>
+    </div>
+      <div class="precio-container">
+        <span>${{this.price}}</span>
+        <ion-button (click)="onCancelClick()" class="pay-button" expand="block" fill="clear" shape="round">
+          CANCELAR
+        </ion-button>
+        <ion-button class="pay-button" (click)="onSaveClick()" expand="block" fill="clear" shape="round">
+          PAGAR
+        </ion-button>
+      </div>
+    </div>
+</ion-content>

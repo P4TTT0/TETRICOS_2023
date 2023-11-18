@@ -7,6 +7,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ProductPageRoutingModule } from './product-routing.module';
 
 import { ProductPage } from './product.page';
+import { PedidosComponent } from 'src/app/components/pedidos/pedidos.component';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { ProductPage } from './product.page';
     IonicModule,
     ProductPageRoutingModule
   ],
-  declarations: [ProductPage],
+  declarations: [ProductPage, PedidosComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class ProductPageModule {}

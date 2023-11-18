@@ -12,6 +12,7 @@ export class HomePage {
   constructor(public auth : AutheticationService, private push : PushNotificationService) 
   {
     this.push.getUser();
+    console.log(this.auth.validationState);
   }
 
 }

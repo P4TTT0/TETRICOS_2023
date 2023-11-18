@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class ProductPage implements OnInit {
   public originalPrice! : number;
   public price! : number;
 
-  constructor(private navCtrl : NavController, private route : ActivatedRoute, private data : DataService, private router : Router) 
+  constructor(private navCtrl : NavController, private route : ActivatedRoute, private data : DataService, private router : Router, private auth : AutheticationService) 
   {
     this.productName = this.route.snapshot.paramMap.get('product');
   }
@@ -49,6 +50,22 @@ export class ProductPage implements OnInit {
 
   onCancelClick()
   {
+    this.navCtrl.back();
+  }
+
+  onSaveClick()
+  {
+    const pedido = {
+      PedidoDe: 'pedro',
+      NombreProducto: this.productName,
+      Price: this.price,
+      ProductPrice: this.originalPrice,
+      TiempoEstimado: this.product.EstimatedTime,
+      Cantidad: this.cantidad,
+      Image: this.product.Image1
+    }
+
+    this.data.saveProductoOnPedido(pedido);
     this.navCtrl.back();
   }
 

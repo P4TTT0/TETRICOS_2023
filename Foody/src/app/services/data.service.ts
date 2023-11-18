@@ -343,6 +343,62 @@ export class DataService {
     });
   }
 
+  public getPedidoProductosByUserName(userName : string): Observable<any[]> {
+    const userCollection = collection(this.firestore,"Pedido");
+    const q = query(userCollection, where('PedidoDe', '==', userName));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
+  }
+
+  public async saveProductoOnPedido(pedido : any)
+  {
+    const userCollection = collection(this.firestore, 'Pedido');
+    const docRef = doc(userCollection);
+    await setDoc(docRef, pedido);
+  }
+
+  public async updateEstadoPedidoByUserName(userName : string)
+  {
+    const EstadoPedidoCollection = collection(this.firestore, 'EstadoPedido');
+    const querySnapshot = await getDocs(query(EstadoPedidoCollection, where('PedidoDe', '==', userName)));
+    const userDoc = querySnapshot.docs[0];
+    const pedidoID = userDoc.id;
+    const userCollection = collection(this.firestore, 'EstadoPedido');
+    const docRef = doc(userCollection, pedidoID);
+    await setDoc(docRef, 
+    {
+      Estado: 'aceptado'
+    });
+  }
+
+  public getPedidosSolicitados(): Observable<any[]> {
+    const userCollection = collection(this.firestore,"EstadoPedido");
+    const q = query(userCollection, where('Estado', '==', 'solicitado'));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
+  } 
+
+  public async saveEstadoPedido(pedido : any)
+  {
+    const userCollection = collection(this.firestore, 'EstadoPedido');
+    const docRef = doc(userCollection);
+    await setDoc(docRef, pedido);
+  }
+
   public async getUserOnLocalByUserName(userName : string)
   {
     const userCollection = collection(this.firestore, 'UsersOnLocal');
