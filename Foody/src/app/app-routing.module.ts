@@ -30,12 +30,40 @@ const routes: Routes = [
   {
     path: 'lista-espera',
     loadChildren: () => import('./pages/metre/lista-espera/lista-espera.module').then( m => m.ListaEsperaPageModule)
+
   },   
   {
     path: 'encuesta',
     loadChildren: () => import('./pages/encuesta/encuesta.module').then( m => m.EncuestaPageModule)
   },
- 
+  {
+    path: 'mesa',
+    loadChildren: () => import('./pages/mesa/mesa.module').then( m => m.MesaPageModule)
+  },
+  {
+    path: 'categorys/:category',
+    loadChildren: () => import('./pages/cateogrys/cateogrys.module').then( m => m.CateogrysPageModule)
+  },
+  {
+    path: 'product/:product',
+    loadChildren: () => import('./pages/product/product.module').then( m => m.ProductPageModule)
+  },
+  {
+    path: 'mesa-general',
+    loadChildren: () => import('./pages/mesa-general/mesa-general.module').then( m => m.MesaGeneralPageModule)
+  },
+  {
+    path: 'chat-mozo/:mesa',
+    loadChildren: () => import('./pages/chat-mozo/chat-mozo.module').then( m => m.ChatMozoPageModule)
+  },
+  {
+    path: 'detalle',
+    loadChildren: () => import('./pages/detalle-pedido/detalle-pedido.module').then( m => m.DetallePedidoPageModule)
+  },
+  {
+    path: 'pedidos',
+    loadChildren: () => import('./pages/mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },
 
 ];
 

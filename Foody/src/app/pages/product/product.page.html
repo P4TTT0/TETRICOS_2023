@@ -1,0 +1,43 @@
+<ion-content [fullscreen]="true">
+  <div class="background" *ngIf="this.product != null">
+    <div class="title">
+      <h1>{{this.productName}}</h1>
+      <div class="mesa-container">
+        <span>#1</span>
+      </div>
+    </div>
+    <swiper-container [loop]="true" [pagination]="true">
+      <swiper-slide><img [src]="'data:image/jpeg;base64,' + product.Image1" alt="Imagen"></swiper-slide>
+      <swiper-slide><img [src]="'data:image/jpeg;base64,' + product.Image2" alt="Imagen"></swiper-slide>
+      <swiper-slide><img [src]="'data:image/jpeg;base64,' + product.Image3" alt="Imagen"></swiper-slide>
+    </swiper-container>
+    <div class="info-container">
+      <div class="time-container">
+        <span style="font-size: 25px;">Tiempo estimado de preparación: {{this.product.EstimatedTime}} minutos.</span>
+      </div>
+      <div class="desc">
+        <p>{{this.product.Description}}</p>
+      </div>
+      <div class="cantidad">
+        <ion-button expand="block" fill="clear" shape="round"><i class="bi bi-dash" (click)="onMinusClick()"></i></ion-button>
+        <div>
+          <span>{{this.cantidad}}</span>
+        </div>
+        <ion-button expand="block" fill="clear" shape="round"><i class="bi bi-plus" (click)="onPlusClick()"></i></ion-button>
+      </div>
+    </div>
+    <div class="precio-container"> 
+      <div class="price">
+        <span>${{this.price}}</span>
+      </div>
+      <div style="display: flex;">
+        <ion-button (click)="onCancelClick()" class="pay-button" expand="block" fill="clear" shape="round">
+          CANCELAR
+        </ion-button>
+        <ion-button class="pay-button" (click)="onSaveClick()" expand="block" fill="clear" shape="round">
+          AGREGAR
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

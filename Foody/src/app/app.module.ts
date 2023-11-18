@@ -15,7 +15,6 @@ import { environment } from 'src/environments/environment';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 
-
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, 
