@@ -1,0 +1,25 @@
+<div class="background">
+  <div class="row">
+    <div class="col-12">
+      <h1>Pedido de @{{this.user.UserName}}</h1>
+    </div>
+  </div>
+  <div class="categorias-container">
+    <div class="categoria"  *ngFor="let product of this.productos">
+      <img [src]="'data:image/png;base64,' + product.Image">
+        <span>{{product.NombreProducto}}</span>
+        <span>${{product.Price}}</span>
+        <span>x{{product.Cantidad}}</span>
+    </div>
+  </div>
+    <div class="buttons-container">
+      <button type="button" class="btn btn-light button-option button-back" (click)="onDecideClick(null)">
+        <i class="bi bi-arrow-left"></i>
+        <span>VOLVER</span>
+      </button>
+      <button type="button" class="btn btn-light button-option button-accept" (click)="onDecideClick(true)">
+        <i class="bi bi-check"></i>
+        <span>ACEPTAR</span>
+      </button>
+    </div>
+</div>

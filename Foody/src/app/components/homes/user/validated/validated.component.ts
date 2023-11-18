@@ -127,7 +127,7 @@ export class ValidatedComponent  implements OnInit
         {
           if(dataJSON.Number == this.userData.mesa)
           {
-            this.router.navigateByUrl('mesa');
+            this.router.navigateByUrl('mesa-general');
           }
           else
           {

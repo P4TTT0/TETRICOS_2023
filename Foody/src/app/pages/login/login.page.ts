@@ -50,7 +50,7 @@ export class LoginPage implements OnInit {
       const user = await this.auth.logIn(this.form.controls['email'].value, this.form.controls['password'].value);
       if(user?.user)
       {
-        if(user?.user?.emailVerified == true || this.form.controls['email'].value == 'admin@admin.com')
+        if(user?.user?.emailVerified == true || this.auth.rol != 'Usuario')
         {
           this.logged = true;
           this.router.navigateByUrl('/home');

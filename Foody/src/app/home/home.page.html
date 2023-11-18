@@ -14,5 +14,8 @@
     <div *ngIf="this.auth.rol == 'Cocinero' || this.auth.rol == 'Barista'">
       <app-cocinero-home></app-cocinero-home>
     </div> 
+    <div *ngIf="this.auth.rol == 'Mozo'">
+      <app-mozo-home></app-mozo-home>
+    </div> 
   </ng-template>
 </ion-content>

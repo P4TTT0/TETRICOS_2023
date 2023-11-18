@@ -1,0 +1,70 @@
+.background
+{
+    width: 100%;
+    height: 90%;
+    padding: 20px;
+    margin-top: -20px;
+}
+
+.background2
+{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.categorias-container
+{
+    height: 80%;
+}
+
+.title
+{
+    padding: 10px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.categoria
+{
+    width: 100%;
+    height: 90%;
+    background-color: #b841417b;
+    border-bottom: solid 4px #703039;
+    border-radius: 10px;
+    margin-bottom: 10px;
+
+    span
+    {
+        padding: 10px;
+        background-color: #70303930;
+        border-radius: 30px;
+        color: #2a1316;
+    }
+}
+
+.mesa-container
+{
+    background-color: #CA6042;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.precio-container
+{
+    background-color: #B84141;
+    border-radius: 30px;  
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 25px;
+}

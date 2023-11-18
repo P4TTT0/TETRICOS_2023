@@ -11,6 +11,7 @@ import { NoValidatedComponent } from '../components/homes/user/no-validated/no-v
 import { ValidatedComponent } from '../components/homes/user/validated/validated.component';
 import { MetreHomeComponent } from '../components/homes/metre-home/metre-home.component';
 import { CocineroHomeComponent } from '../components/homes/cocinero-home/cocinero-home.component';
+import { MozoHomeComponent } from '../components/homes/mozo-home/mozo-home.component';
 
 
 @NgModule({
@@ -21,6 +22,8 @@ import { CocineroHomeComponent } from '../components/homes/cocinero-home/cociner
     HomePageRoutingModule, 
     SharedModule
   ],
-  declarations: [HomePage, AdminHomeComponent, NoValidatedComponent, ValidatedComponent, MetreHomeComponent, CocineroHomeComponent]
+
+  declarations: [HomePage, AdminHomeComponent, NoValidatedComponent, ValidatedComponent, MetreHomeComponent,  MozoHomeComponent, CocineroHomeComponent]
 })
+
 export class HomePageModule {}
