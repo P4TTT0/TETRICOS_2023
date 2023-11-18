@@ -1,11 +1,13 @@
-<div class="background" *ngIf="this.usandoQR">
+<div class="background" *ngIf="!usingQR">
   <div class="text-container">
     <h1>¡Bienvenido de nuevo!</h1>    
-    <div class="buttons-container">     
+    <div class="buttons-container" >     
       <button *ngIf="!userData" type="button" class="btn btn-light button" (click)="ingresarLocal()">Ingresar a la lista de espera</button>
-      <p *ngIf="userData.state == 'waiting'">Por favor, espere a que el metre le asigne una mesa...</p>
-      <p *ngIf="userData.state == 'assigned'">Por favor, dirigete a la mesa {{userData.mesa}}</p>
-      <button *ngIf="userData.state == 'assigned'" type="button" class="btn btn-light button" (click)="reclamarMesa()">Lee el codigo QR</button>
+      <div *ngIf="userData">
+        <p *ngIf="userData.state == 'waiting'">Por favor, espere a que el metre le asigne una mesa...</p>
+        <p *ngIf="userData.state == 'assigned'">Por favor, dirigete a la mesa {{userData.mesa}}</p>
+        <button *ngIf="userData.state == 'assigned'" type="button" class="btn btn-light button" (click)="reclamarMesa()">Lee el codigo QR</button>
+      </div>
       
       <button type="button" class="btn btn-light button" (click)="onBackClick()">VOLVER</button>
     </div>

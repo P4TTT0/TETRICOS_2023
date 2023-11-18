@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
@@ -14,14 +14,16 @@ import { ToastService } from 'src/app/services/toast.service';
 export class ValidatedComponent  implements OnInit 
 {
 
-  inWaitingList = false;
+  inWaitingList : boolean | string = "Esperando";
   userData : any;
-  public usandoQR : boolean = true;
+  @Output() usingQRChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+  usingQR : boolean = false;
+  waitingForData = true;
 
   constructor(private navCtrl : NavController, 
     private QRReader : QRReaderService, 
     private toast : ToastService, 
-    private auth : AutheticationService, 
+    public auth : AutheticationService, 
     private data : DataService,
     private router : Router) 
   {
@@ -47,17 +49,23 @@ export class ValidatedComponent  implements OnInit
     {
       this.inWaitingList = false;
     }
+    finally
+    {
+      this.waitingForData = false;
+    }
   }
 
   async ingresarLocal()
   {
-    this.usandoQR = false;
+    this.usingQRChange.emit(true);
     this.QRReader.hideBackground();
+    this.usingQR = true;
     const data = await this.QRReader.readQR();
 
     if(data?.hasContent)
     {
-      this.usandoQR = true;
+      this.usingQR = false;
+      this.usingQRChange.emit(false);
       this.QRReader.showBackground();
       let dataString = this.QRReader.translateQR(data.content);
       let dataJSON = JSON.parse(dataString)
@@ -100,13 +108,15 @@ export class ValidatedComponent  implements OnInit
 
   async reclamarMesa()
   {
-    this.usandoQR = false;
+    this.usingQR = true;
+    this.usingQRChange.emit(true);
     this.QRReader.hideBackground();
     const data = await this.QRReader.readQR();
 
     if(data?.hasContent)
     {
-      this.usandoQR = true;
+      this.usingQR = false;
+      this.usingQRChange.emit(false);
       this.QRReader.showBackground();
       let dataString = this.QRReader.translateQR(data.content);
       let dataJSON = JSON.parse(dataString)

@@ -9,10 +9,16 @@ import { PushNotificationService } from '../services/push-notifications.service'
 })
 export class HomePage {
 
+  usingQR : boolean = false;
+
   constructor(public auth : AutheticationService, private push : PushNotificationService) 
   {
     this.push.getUser();
     console.log(this.auth.validationState);
+  }
+
+  onUsingQRChange(newValue: boolean) {
+    this.usingQR = newValue;
   }
 
 }

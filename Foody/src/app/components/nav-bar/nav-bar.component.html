@@ -1,4 +1,7 @@
 <div class="background">
+  <div class="logout-container">
+    <button id="logout" class="logout-button" (click)="logout()"><i class="bi bi-box-arrow-right"></i></button>
+  </div>
   <img src="./../../../assets/Isotipo_NoBackground_3000px.png">
-  <span>@{{auth.userName}}</span>
+  <span *ngIf="auth.logueado">@{{auth.userName}}</span>
 </div>
