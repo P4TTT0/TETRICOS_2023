@@ -41,6 +41,8 @@ export class DetallePedidoPage implements OnInit {
     }
     this.data.saveEstadoPedido(estadoPedido);
     this.auth.pedidoRealizado = true;
+    this.navCTRL.back();
+    this.sendPushNotification();
   }
 
   public async sendPushNotification() 
