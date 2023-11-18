@@ -19,6 +19,7 @@ export class AutheticationService {
   public userName : string = "";
   public validationState : boolean | null = null;
   public rol : string = "";
+  public encuesta : boolean = false;
 
   // ||====|| Constructor ||====||
   constructor(public ngFireAuth : AngularFireAuth, private data : DataService) { }

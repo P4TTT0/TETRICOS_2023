@@ -363,4 +363,12 @@ export class DataService {
       mesa : mesa
     })    
   }
+
+  public async saveEncuesta(encuestaData : any)
+  {
+    const encuestaCollection = collection(this.firestore, 'encuestas');
+    const docRef = await addDoc(encuestaCollection, encuestaData);  
+
+    return docRef.id;
+  }
 }

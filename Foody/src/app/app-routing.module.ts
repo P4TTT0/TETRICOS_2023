@@ -30,7 +30,12 @@ const routes: Routes = [
   {
     path: 'lista-espera',
     loadChildren: () => import('./pages/metre/lista-espera/lista-espera.module').then( m => m.ListaEsperaPageModule)
-  },  
+  },   
+  {
+    path: 'encuesta',
+    loadChildren: () => import('./pages/encuesta/encuesta.module').then( m => m.EncuestaPageModule)
+  },
+ 
 
 ];
 
