@@ -17,8 +17,7 @@ export class PedidosComponent  implements OnInit {
 
   async ngOnInit() 
   {
-    console.log('pedro');
-    this.data.getPedidoProductosByUserName('pedro').subscribe(pedido => 
+    this.data.getPedidoProductosByUserName(this.auth.userName).subscribe(pedido => 
     {
       this.productos = pedido;
       console.log(pedido);

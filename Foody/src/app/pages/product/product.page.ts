@@ -56,7 +56,7 @@ export class ProductPage implements OnInit {
   onSaveClick()
   {
     const pedido = {
-      PedidoDe: 'pedro',
+      PedidoDe: this.auth.userName,
       NombreProducto: this.productName,
       Price: this.price,
       ProductPrice: this.originalPrice,
