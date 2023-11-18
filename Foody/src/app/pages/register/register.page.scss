@@ -14,6 +14,12 @@ ion-content
     background-color: #531514 !important;
 }
 
+.ans-container{
+    p{
+        color: #271F30
+    }
+}
+
 .buttons-container
 {
     display: flex;
@@ -110,7 +116,6 @@ form
 {
     background-color: #B84141;
     border-radius: 90px 90px 0px 0px;   
-    height: 20px !important;
 }
 .login{
     width: 100%;
@@ -140,4 +145,9 @@ ion-list
 p
 {
     font-size: 20px;
+}
+
+.icono{
+    margin-left: 150px;
+    height: 30px;
 }

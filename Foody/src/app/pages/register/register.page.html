@@ -10,10 +10,11 @@
       <form [formGroup]="form">
         <div class="buttons-container">
           <div class="buttons-container">
-            <ion-button style="--background: gray;" id="qr-button" (click)="readQR()">
+            <ion-button style="--background: #B84141;" id="qr-button" (click)="readQR()">
               <ion-icon slot="icon-only" name="qr-code" style="background-color: gray;"></ion-icon>
             </ion-button>
-            <ion-button style="--background:gray" (click)="uploadPhoto()">Cargar Foto</ion-button>
+            <img class="icono"  [src]="this.form.controls['photo'].value ? '../../../assets/tilde.png' : '../../../assets/anon.png' " alt="">
+            <ion-button style="--background:#B84141;" (click)="uploadPhoto()">Cargar Foto</ion-button>
           </div>
         </div>
         <div class="fields-container">
@@ -36,7 +37,7 @@
             </div>
           </div>
           <div class="row-field">
-            <div style="margin-right: 10px; flex: 1;">
+            <div style="margin-right: 10px; flex: 2;">
               <div class="login-field">
                 <input type="text" placeholder="DNI" formControlName="dni">
               </div>
@@ -45,7 +46,7 @@
                 <small *ngIf="!form.controls['dni'].errors!['required'] && form.controls['dni'].errors!['pattern'] && form.controls['dni'].touched">¡Formato invalido!</small>
               </div>
             </div>
-            <div style="flex: 2;">
+            <div style="flex: 3;">
               <div class="login-field">
                 <input type="text" placeholder="Nombre de usuario" formControlName="username">
               </div>
