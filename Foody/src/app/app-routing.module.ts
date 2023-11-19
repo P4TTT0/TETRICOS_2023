@@ -63,7 +63,11 @@ const routes: Routes = [
   {
     path: 'pedidos',
     loadChildren: () => import('./pages/mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
+  },  {
+    path: 'graficos',
+    loadChildren: () => import('./pages/graficos/graficos.module').then( m => m.GraficosPageModule)
   },
+
 
 ];
 

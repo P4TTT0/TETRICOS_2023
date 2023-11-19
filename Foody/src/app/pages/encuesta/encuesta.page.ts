@@ -46,7 +46,7 @@ export class EncuestaPage implements OnInit {
 
     this.data.saveEncuesta(encuesta);
     this.auth.encuesta = true;
-    this.router.navigateByUrl("/home")
+    this.router.navigateByUrl("/graficos")
     console.log(this.form.controls["atencion"].value)
     console.log(this.form.controls["comida"].value)
     console.log(this.form.controls["general"].value)

@@ -1,0 +1,13 @@
+<ion-content [fullscreen]="true">
+  <div class="contenedor">
+    <ion-button *ngIf="!auth.encuesta" (click)="onClick()" class="boton">Completar mi encuesta</ion-button>
+    <h1>Comida</h1>
+    <div id="bar" style="width: 20rem; height: 20rem;"></div>
+    <div class="separador"></div> <!-- Línea separadora -->
+    <h1>Atención</h1>
+    <div id="pie" style="width: 20rem; height: 20rem;"></div>
+    <div class="separador"></div> <!-- Línea separadora -->
+    <h1>General</h1>
+    <div id="line" style="width: 20rem; height: 20rem;"></div>    
+  </div>
+</ion-content>
