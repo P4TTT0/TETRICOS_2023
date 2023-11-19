@@ -19,6 +19,7 @@ export class AutheticationService {
   public userName : string = "";
   public validationState : boolean | null = null;
   public rol : string = "";
+  public encuesta : boolean = false;
   public mesaAsignada! : number;
   public pedidoRealizado : boolean = false;
 
