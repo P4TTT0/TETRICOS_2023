@@ -69,7 +69,11 @@ const routes: Routes = [
   {
     path: 'pedidos-aceptados',
     loadChildren: () => import('./pages/mozo/pedidos-aceptados/pedidos-aceptados.module').then( m => m.PedidosAceptadosPageModule)
+  },  {
+    path: 'mi-pedido',
+    loadChildren: () => import('./pages/mi-pedido/mi-pedido.module').then( m => m.MiPedidoPageModule)
   }
+
 
 
 
