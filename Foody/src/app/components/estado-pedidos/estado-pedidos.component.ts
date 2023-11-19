@@ -4,23 +4,24 @@ import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 
 @Component({
-  selector: 'app-pedidos',
-  templateUrl: './pedidos.component.html',
-  styleUrls: ['./pedidos.component.scss'],
+  selector: 'app-estado-pedidos',
+  templateUrl: './estado-pedidos.component.html',
+  styleUrls: ['./estado-pedidos.component.scss'],
 })
-export class PedidosComponent  implements OnInit {
+export class EstadoPedidosComponent  implements OnInit {
 
   @Input() user : any;
-  public productos : any;
+  public pedido : any;
 
   constructor(private data : DataService, private modalController : ModalController, private auth : AutheticationService) { }
 
   async ngOnInit() 
   {
     console.log(this.user);
-    this.data.getPedidoProductosByUserName(this.user.UserName).subscribe(pedido => 
+    this.data.getEstadoPedidoByUsername(this.user.UserName).subscribe(pedido => 
     {
-      this.productos = pedido;
+      console.log(this.user);
+      this.pedido = pedido[0];
       console.log(pedido);
     });
   }
@@ -29,7 +30,7 @@ export class PedidosComponent  implements OnInit {
   {
     if(validated != null)
     {
-      await this.data.updateEstadoPedidoByUserName(this.user.UserName);
+      await this.data.entregarPedidoByUserName(this.user.UserName);
     }
 
     this.modalController.dismiss();

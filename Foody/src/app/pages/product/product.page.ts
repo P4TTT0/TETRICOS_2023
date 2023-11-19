@@ -55,6 +55,12 @@ export class ProductPage implements OnInit {
 
   onSaveClick()
   {
+    let sector = 'Cocina'
+
+    if(this.product.category == 'Bebidas' || this.product.category == 'Alcohol')
+    {
+      sector = 'Bar';
+    }
     const pedido = {
       PedidoDe: this.auth.userName,
       NombreProducto: this.productName,
@@ -62,7 +68,8 @@ export class ProductPage implements OnInit {
       ProductPrice: this.originalPrice,
       TiempoEstimado: this.product.EstimatedTime,
       Cantidad: this.cantidad,
-      Image: this.product.Image1
+      Image: this.product.Image1,
+      Sector : sector
     }
 
     this.data.saveProductoOnPedido(pedido);

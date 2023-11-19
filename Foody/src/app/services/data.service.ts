@@ -345,6 +345,7 @@ export class DataService {
 
   public getPedidoProductosByUserName(userName : string): Observable<any[]> {
     const userCollection = collection(this.firestore,"Pedido");
+    console.log(userName);
     const q = query(userCollection, where('PedidoDe', '==', userName));
 
     return new Observable<any[]>((observer) => {
@@ -372,9 +373,23 @@ export class DataService {
     const pedidoID = userDoc.id;
     const userCollection = collection(this.firestore, 'EstadoPedido');
     const docRef = doc(userCollection, pedidoID);
-    await setDoc(docRef, 
+    await updateDoc(docRef, 
     {
       Estado: 'aceptado'
+    });
+  }
+
+  public async entregarPedidoByUserName(userName : string)
+  {
+    const EstadoPedidoCollection = collection(this.firestore, 'EstadoPedido');
+    const querySnapshot = await getDocs(query(EstadoPedidoCollection, where('PedidoDe', '==', userName)));
+    const userDoc = querySnapshot.docs[0];
+    const pedidoID = userDoc.id;
+    const userCollection = collection(this.firestore, 'EstadoPedido');
+    const docRef = doc(userCollection, pedidoID);
+    await updateDoc(docRef, 
+    {
+      Estado: 'entregado'
     });
   }
 
@@ -391,6 +406,35 @@ export class DataService {
       return () => unsubscribe();
     });
   } 
+
+  public getPedidosAceptados(): Observable<any[]> {
+    const userCollection = collection(this.firestore,"EstadoPedido");
+    const q = query(userCollection, where('Estado', '==', 'aceptado'));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
+  } 
+
+  public getEstadoPedidoByUsername(userName : string): Observable<any[]> {
+    const userCollection = collection(this.firestore,"EstadoPedido");
+    const q = query(userCollection, where('Estado', '==', 'aceptado'), where('PedidoDe', '==', userName));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
+  } 
+
 
   public async saveEstadoPedido(pedido : any)
   {
@@ -498,7 +542,8 @@ export class DataService {
     }
   }
 
-  public async setMesa(userName: string, mesa : number): Promise<void> {
+  public async setMesa(userName: string, mesa : number): Promise<void> 
+  {
     const userCollection = collection(this.firestore, 'UsersOnLocal');
     let userUID = (await this.getUserOnLocalByUserName(userName)).UID;
     const docRef = doc(userCollection, userUID);
@@ -508,4 +553,44 @@ export class DataService {
       mesa : mesa
     })    
   }
+
+  public async getUserFromMesa(numeroMesa : string)
+  {
+    const userCollection = collection(this.firestore, 'UsersOnLocal');
+    const q = query(userCollection, where('mesa', '==', numeroMesa));
+    const querySnapshot = await getDocs(q);
+    const userDoc = querySnapshot.docs[0];
+    return userDoc.data();
+  }
+
+  public async getPedidosFromUser(userName : string, sector : string) : Promise<any | null>
+  {
+    const userCollection = collection(this.firestore, 'Pedido');
+    const q = query(userCollection, where('PedidoDe', '==', userName), where('Sector', '==', sector));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const pedidos = querySnapshot.docs.map(doc => doc.data());
+
+    return pedidos;
+  }
+
+  public async updateEstadoSectorByUserName(userName : string, sector : string)
+  {
+    const EstadoPedidoCollection = collection(this.firestore, 'EstadoPedido');
+    const querySnapshot = await getDocs(query(EstadoPedidoCollection, where('PedidoDe', '==', userName)));
+    const userDoc = querySnapshot.docs[0];
+    const pedidoID = userDoc.id;
+    const userCollection = collection(this.firestore, 'EstadoPedido');
+    const docRef = doc(userCollection, pedidoID);
+    await updateDoc(docRef, 
+    {
+      [sector]: true
+    });
+  }
+
 }

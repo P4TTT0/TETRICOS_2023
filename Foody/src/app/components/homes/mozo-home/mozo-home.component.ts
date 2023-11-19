@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class MozoHomeComponent  implements OnInit {
 
+
   constructor(private router : Router) { }
 
   ngOnInit() {}
@@ -17,4 +18,8 @@ export class MozoHomeComponent  implements OnInit {
     this.router.navigateByUrl('pedidos');
   }
 
+  onPedidosAceptadosClick() 
+  {
+    this.router.navigateByUrl('pedidosAceptados');
+  }
 }
