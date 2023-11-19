@@ -49,7 +49,7 @@ export class ValidatedComponent  implements OnInit
     }
     catch(error)
     {
-      this.inWaitingList = false;
+      this.inWaitingList = false
     }
     finally
     {
