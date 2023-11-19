@@ -159,8 +159,8 @@ export class ValidatedComponent  implements OnInit
     this.push.sendPushNotification({
         registration_ids: metreTokens,
         notification: {
-          title: '¡Nuevo mensaje!',
-          body: `Tienes un nuevo mensaje de la mesa #${this.auth.mesaAsignada}`,
+          title: '¡Nuevo cliente!',
+          body: `Tienes un nuevo cliente esperando en la lista de espera.`,
         },
         data: {
           do: 'navigate',
