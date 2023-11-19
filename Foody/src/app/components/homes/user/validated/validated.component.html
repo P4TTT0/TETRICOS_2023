@@ -3,13 +3,11 @@
     <h1>¡Bienvenido de nuevo!</h1>    
     <div class="buttons-container" >     
       <button *ngIf="!userData" type="button" class="btn btn-light button" (click)="ingresarLocal()">Ingresar a la lista de espera</button>
-      <div *ngIf="userData">
+      <div class="texto" *ngIf="userData">
         <p *ngIf="userData.state == 'waiting'">Por favor, espere a que el metre le asigne una mesa...</p>
-        <p *ngIf="userData.state == 'assigned'">Por favor, dirigete a la mesa {{userData.mesa}}</p>
-        <button *ngIf="userData.state == 'assigned'" type="button" class="btn btn-light button" (click)="reclamarMesa()">Lee el codigo QR</button>
+        <p class="assigned" *ngIf="userData.state == 'assigned'">Por favor, dirigete a la mesa {{userData.mesa}}</p>
+        <button *ngIf="userData.state == 'assigned'" type="button" class="btn btn-light button assigned" (click)="reclamarMesa()">Lee el codigo QR</button>
       </div>
-      
-      <button type="button" class="btn btn-light button" (click)="onBackClick()">VOLVER</button>
     </div>
   </div>
 </div>

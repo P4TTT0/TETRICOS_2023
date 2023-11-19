@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
+import { PushNotificationService } from 'src/app/services/push-notifications.service';
 import { QRReaderService } from 'src/app/services/qrreader.service';
 import { ToastService } from 'src/app/services/toast.service';
 
@@ -25,7 +26,8 @@ export class ValidatedComponent  implements OnInit
     private toast : ToastService, 
     public auth : AutheticationService, 
     private data : DataService,
-    private router : Router) 
+    private router : Router,
+    private push : PushNotificationService) 
   {
     
   }
@@ -47,7 +49,7 @@ export class ValidatedComponent  implements OnInit
     }
     catch(error)
     {
-      this.inWaitingList = false;
+      this.inWaitingList = false
     }
     finally
     {
@@ -68,8 +70,7 @@ export class ValidatedComponent  implements OnInit
       this.usingQRChange.emit(false);
       this.QRReader.showBackground();
       let dataString = this.QRReader.translateQR(data.content);
-      let dataJSON = JSON.parse(dataString)
-      
+      let dataJSON = JSON.parse(dataString);
       try
       {
         console.log(dataJSON.Type);
@@ -84,6 +85,7 @@ export class ValidatedComponent  implements OnInit
           }
           let userUID = await this.auth.getUserUid();
           this.data.saveUserWaitingList(userUID,userToWaitinglist);
+          this.sendPushNotification();
         }
         else
         {
@@ -147,5 +149,29 @@ export class ValidatedComponent  implements OnInit
         this.toast.showMessage('Error. . . Ese QR no es parte de nuestro establecimiento')
       }
     }
+  }
+
+  public async sendPushNotification() 
+  {
+    let metreTokens = await this.data.getMetreTokens();
+    console.log(metreTokens);
+    console.log('hola lol');
+    this.push.sendPushNotification({
+        registration_ids: metreTokens,
+        notification: {
+          title: '¡Nuevo cliente!',
+          body: `Tienes un nuevo cliente esperando en la lista de espera.`,
+        },
+        data: {
+          do: 'navigate',
+          value: 
+          {
+            url: 'lista-espera',
+          }
+        },
+      })
+      .subscribe((data) => {
+        console.log('hola sas' + data);
+      });
   }
 }
