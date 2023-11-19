@@ -277,6 +277,15 @@ export class DataService {
     return mozosTokens;
   }
 
+  public async getMetreTokens() {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Rol', '==', 'Metre'));
+    const querySnapshot = await getDocs(q);
+    const mozosTokens = querySnapshot.docs.map(doc => doc.data()['token']);
+  
+    return mozosTokens;
+  }
+
   public async getProductByProductName(productName : string) {
     const userCollection = collection(this.firestore, 'Product');
     const q = query(userCollection, where('Name', '==', productName));
