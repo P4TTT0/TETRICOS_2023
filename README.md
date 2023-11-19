@@ -46,6 +46,7 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[QR Ingreso local]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[QR Lista espera]**: | Done | 11 nov. - 12 nov. | **[✔️]**
 - **[Arreglo error de QR]**: | Done | 18 nov. - 18 nov. | **[✔️]**
+- **[Derivación de pedido]**: | Done | 18 nov. - 19 nov. | **[✔️]**
 
 #### Nani Renato (GAMMA):
 - **[Log-In Anonimo]**: | Done | 10 nov. - 11 nov. | **[✔️]**
