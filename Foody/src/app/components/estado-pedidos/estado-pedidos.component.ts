@@ -31,6 +31,7 @@ export class EstadoPedidosComponent  implements OnInit {
     if(validated != null)
     {
       await this.data.entregarPedidoByUserName(this.user.UserName);
+      this.data.changeOrderStatus(this.user.UserName, 'Entregado')
     }
 
     this.modalController.dismiss();

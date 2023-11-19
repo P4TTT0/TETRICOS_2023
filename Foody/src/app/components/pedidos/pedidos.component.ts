@@ -31,6 +31,7 @@ export class PedidosComponent  implements OnInit {
     if(validated != null)
     {
       await this.data.updateEstadoPedidoByUserName(this.user.UserName);
+      this.data.changeOrderStatus(this.user.UserName,'EnEspera')
       this.sendPushNotification();
     }
 

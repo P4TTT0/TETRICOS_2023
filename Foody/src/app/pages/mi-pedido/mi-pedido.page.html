@@ -1,0 +1,31 @@
+<div class="background">
+  <div class="row">
+    <div class="col-12">
+      <h1>Mi pedido</h1>
+    </div>
+  </div>
+  <div class="categorias-container" *ngIf="this.pedido">
+    <div class="categoria">
+      <span>COCINA</span>
+      <span>{{ this.pedido.CocinaLista ? 'Listo' : 'En preparación' }}</span>
+    </div>
+    <div class="categoria">
+      <span>BAR</span>
+      <span>{{ this.pedido.BarListo ? 'Listo' : 'En preparación' }}</span>
+    </div>
+  </div>
+  <div *ngIf="this.pedido">
+    <p *ngIf="this.pedido.CocinaLista && this.pedido.BarListo" type="button">¡El mozo te traerá tu pedido en unos instantes!</p>
+  </div>
+  <div class="buttons-container" *ngIf="this.pedido">
+    <button type="button" class="btn btn-light button-option button-back" (click)="onDecideClick(null)">
+      <i class="bi bi-arrow-left"></i>
+      <span>VOLVER</span>
+    </button>
+    
+    <button [disabled]="!(this.pedido.Estado == 'entregado')" class="btn btn-light button-option button-accept" (click)="onDecideClick(true)">
+      <i class="bi bi-check"></i>
+      <span>CONFIRMAR ENTREGA</span>
+    </button>
+  </div>
+</div>

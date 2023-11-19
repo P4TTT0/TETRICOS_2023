@@ -81,7 +81,8 @@ export class ValidatedComponent  implements OnInit
           {
             name : this.auth.userName,
             state : 'waiting',
-            Timestamp : ""
+            Timestamp : "",
+            orderStatus: 'SinPedir'
           }
           let userUID = await this.auth.getUserUid();
           this.data.saveUserWaitingList(userUID,userToWaitinglist);

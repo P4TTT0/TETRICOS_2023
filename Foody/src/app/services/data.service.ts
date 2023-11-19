@@ -453,6 +453,19 @@ export class DataService {
     });
   } 
 
+  public getEstadoPedidoByUsername2(userName : string): Observable<any[]> {
+    const userCollection = collection(this.firestore,"EstadoPedido");
+    const q = query(userCollection, where('PedidoDe', '==', userName));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
+  } 
 
   public async saveEstadoPedido(pedido : any)
   {
@@ -684,6 +697,31 @@ export class DataService {
       [sector]: true
     });
   }
+  
+  public async changeOrderStatus(userName : string, status : string)
+  {
+    const EstadoPedidoCollection = collection(this.firestore, 'UsersOnLocal');
+    const querySnapshot = await getDocs(query(EstadoPedidoCollection, where('name', '==', userName)));
+    const docRef = querySnapshot.docs[0].ref;
+    await updateDoc(docRef, 
+    {
+      orderStatus: status
+    });
+  }
 
+
+  public getOrderStatusByUsername(userName : string): Observable<any[]> {
+    const userCollection = collection(this.firestore,"UsersOnLocal");
+    const q = query(userCollection, where('name', '==', userName));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
+  } 
 
 }

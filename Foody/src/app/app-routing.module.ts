@@ -63,7 +63,25 @@ const routes: Routes = [
   {
     path: 'pedidos',
     loadChildren: () => import('./pages/mozo/pedidos/pedidos.module').then( m => m.PedidosPageModule)
-  },  {
+  },
+  {
+    path: 'pedidosAceptados',
+    loadChildren: () => import('./pages/mozo/pedidos-aceptados/pedidos-aceptados.module').then( m => m.PedidosAceptadosPageModule)
+  },
+  {
+    path:'pedido/:parametro',
+    loadChildren: () => import('./pages/cocina/pedido/pedido.module').then( m => m.PedidoPageModule)
+  },
+  {
+    path: 'pedidos-aceptados',
+    loadChildren: () => import('./pages/mozo/pedidos-aceptados/pedidos-aceptados.module').then( m => m.PedidosAceptadosPageModule)
+  },
+  {
+    path: 'mi-pedido',
+    loadChildren: () => import('./pages/mi-pedido/mi-pedido.module').then( m => m.MiPedidoPageModule)
+  
+  },
+  {
     path: 'graficos',
     loadChildren: () => import('./pages/graficos/graficos.module').then( m => m.GraficosPageModule)
   },
@@ -79,8 +97,6 @@ const routes: Routes = [
     path: 'pedidos-aceptados',
     loadChildren: () => import('./pages/mozo/pedidos-aceptados/pedidos-aceptados.module').then( m => m.PedidosAceptadosPageModule)
   }
-
-
 
 ];
 
