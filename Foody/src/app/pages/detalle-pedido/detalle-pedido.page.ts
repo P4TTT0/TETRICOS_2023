@@ -20,7 +20,7 @@ export class DetallePedidoPage implements OnInit {
    }
 
   ngOnInit() {
-    this.data.getPedidoProductosByUserName('pedro').subscribe(pedido => 
+    this.data.getPedidoProductosByUserName(this.auth.userName).subscribe(pedido => 
     {
       this.productos = pedido;
       this.price = this.productos.reduce((total: any, pedido: { Price: any; }) => total + pedido.Price, 0);
@@ -38,6 +38,8 @@ export class DetallePedidoPage implements OnInit {
       PedidoDe: this.auth.userName,
       Estado: 'solicitado',
       HoraSolicitado: new Date(),
+      CocinaLista : false,
+      BarListo : false
     }
     this.data.saveEstadoPedido(estadoPedido);
     this.auth.pedidoRealizado = true;

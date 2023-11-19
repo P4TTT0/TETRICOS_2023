@@ -10,6 +10,7 @@ import { SharedModule } from '../modules/shared/shared.module';
 import { NoValidatedComponent } from '../components/homes/user/no-validated/no-validated.component';
 import { ValidatedComponent } from '../components/homes/user/validated/validated.component';
 import { MetreHomeComponent } from '../components/homes/metre-home/metre-home.component';
+import { CocineroHomeComponent } from '../components/homes/cocinero-home/cocinero-home.component';
 import { MozoHomeComponent } from '../components/homes/mozo-home/mozo-home.component';
 
 
@@ -21,6 +22,8 @@ import { MozoHomeComponent } from '../components/homes/mozo-home/mozo-home.compo
     HomePageRoutingModule, 
     SharedModule
   ],
-  declarations: [HomePage, AdminHomeComponent, NoValidatedComponent, ValidatedComponent, MetreHomeComponent, MozoHomeComponent]
+
+  declarations: [HomePage, AdminHomeComponent, NoValidatedComponent, ValidatedComponent, MetreHomeComponent,  MozoHomeComponent, CocineroHomeComponent]
 })
+
 export class HomePageModule {}

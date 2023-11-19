@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+  <app-nav-bar></app-nav-bar>
+  <div class="background">
+    <div class="back-button-container">
+      <ion-button (click)="onBackClick()" class="back-button" expand="block" fill="clear" shape="round">
+        <i class="bi bi-arrow-left"></i>
+      </ion-button>
+      <button (click)="pedidoListo()" type="button" class="btn btn-light button-option button-accept" >
+        <i class="bi bi-check"></i>
+        <span>AVISAR AL MOZO</span>
+      </button>
+      <div class="mesa-container">
+        <span>{{this.parametro}}</span>
+      </div>
+    </div>
+    <div class="users-container">
+      <div>
+        <h1>Platos a cocinar</h1>
+      </div>
+      <div class="users">
+        <div class="user-container"*ngFor="let pedido of this.pedidos">
+          <div>
+            <span>{{pedido.NombreProducto}}</span>
+            <p>Cantidad: {{pedido.Cantidad}}</p>
+            <img [src]="'data:image/png;base64,' + pedido.Image">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
