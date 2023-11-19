@@ -30,7 +30,13 @@ const routes: Routes = [
   {
     path: 'lista-espera',
     loadChildren: () => import('./pages/metre/lista-espera/lista-espera.module').then( m => m.ListaEsperaPageModule)
-  },   {
+
+  },   
+  {
+    path: 'encuesta',
+    loadChildren: () => import('./pages/encuesta/encuesta.module').then( m => m.EncuestaPageModule)
+  },
+  {
     path: 'mesa',
     loadChildren: () => import('./pages/mesa/mesa.module').then( m => m.MesaPageModule)
   },
@@ -69,17 +75,28 @@ const routes: Routes = [
   {
     path: 'pedidos-aceptados',
     loadChildren: () => import('./pages/mozo/pedidos-aceptados/pedidos-aceptados.module').then( m => m.PedidosAceptadosPageModule)
-  },  {
+  },
+  {
     path: 'mi-pedido',
     loadChildren: () => import('./pages/mi-pedido/mi-pedido.module').then( m => m.MiPedidoPageModule)
+  
+  },
+  {
+    path: 'graficos',
+    loadChildren: () => import('./pages/graficos/graficos.module').then( m => m.GraficosPageModule)
+  },
+  {
+    path: 'pedidosAceptados',
+    loadChildren: () => import('./pages/mozo/pedidos-aceptados/pedidos-aceptados.module').then( m => m.PedidosAceptadosPageModule)
+  },
+  {
+    path:'pedido/:parametro',
+    loadChildren: () => import('./pages/cocina/pedido/pedido.module').then( m => m.PedidoPageModule)
+  },
+  {
+    path: 'pedidos-aceptados',
+    loadChildren: () => import('./pages/mozo/pedidos-aceptados/pedidos-aceptados.module').then( m => m.PedidosAceptadosPageModule)
   }
-
-
-
-
-
-
- 
 
 ];
 

@@ -1,0 +1,59 @@
+<!-- encuesta.page.html -->
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    <div class="blocks" style="flex: 1;">
+      <form [formGroup]="form" (ngSubmit)="submitEncuesta()">
+        <!-- Atención -->
+        <div class="campo">
+          <ion-label>¿Qué puntaje le darías a la atención recibida del 1 al 5?</ion-label>
+          <ion-range [min]="1"
+          [max]="5"
+          [value]="1"
+          [pin]="true"
+          [ticks]="true"
+          [snaps]="true" formControlName="atencion">
+            <ion-icon slot="start" name="sad"></ion-icon>
+            <ion-icon slot="end" name="happy"></ion-icon>
+          </ion-range>
+        </div>
+
+        <!-- Comida -->
+        <div class="campo">
+          <ion-label>¿Qué puntaje le darías a la comida del 1 al 5?</ion-label>
+          <ion-range [min]="1"
+          [max]="5"
+          [value]="1"
+          [pin]="true"
+          [ticks]="true"
+          [snaps]="true" formControlName="atencion">
+            <ion-icon slot="start" name="sad"></ion-icon>
+            <ion-icon slot="end" name="happy"></ion-icon>
+          </ion-range>
+        </div>      
+
+         <!-- Puntaje General -->
+         <div class="campo">
+          <ion-label>¿Del 1 al 5 que puntaje general le darías a tu experiencia en el local el día de hoy?</ion-label>
+          <ion-range [min]="1"
+          [max]="5"
+          [value]="1"
+          [pin]="true"
+          [ticks]="true"
+          [snaps]="true" formControlName="atencion">
+            <ion-icon slot="start" name="sad"></ion-icon>
+            <ion-icon slot="end" name="happy"></ion-icon>
+          </ion-range>
+         </div>        
+
+        <!-- Reseña -->
+        <div class="campo">
+          <ion-label>¿Podrías contarnos brevemente tu experiencia en el local?</ion-label>
+          <ion-textarea formControlName="resenia" rows="4"></ion-textarea>
+        </div>
+
+        <ion-button class="submit" expand="full" type="submit" [disabled]="form.invalid" expand="block" fill="clear" shape="round">Enviar Encuesta</ion-button>
+      </form>
+    </div>
+  </div>
+</ion-content>

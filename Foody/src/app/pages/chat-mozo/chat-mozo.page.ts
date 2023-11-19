@@ -42,7 +42,10 @@ export class ChatMozoPage implements OnInit {
       this.data.sendMessage(this.chatForm.controls['message'].value, this.auth.userName, 1);
     }
     this.chatForm.controls['message'].setValue('');
-    this.sendPushNotification();
+    if(this.auth.rol == 'Usuario')
+    {
+      this.sendPushNotification();
+    }
   }
 
   private scrollToLastMessage() {

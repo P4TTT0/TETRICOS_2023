@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { user } from '@angular/fire/auth';
 import { addDoc, collection, Firestore, getDoc, getDocs, updateDoc, collectionData, doc, query, where, orderBy, setDoc, onSnapshot, Timestamp } from
 '@angular/fire/firestore';
-import { deleteDoc } from 'firebase/firestore';
+import { QuerySnapshot, deleteDoc } from 'firebase/firestore';
 import { BehaviorSubject, Observable, map } from 'rxjs';
 
 @Injectable({
@@ -271,6 +271,24 @@ export class DataService {
   public async getMozosTokens() {
     const userCollection = collection(this.firestore, 'User');
     const q = query(userCollection, where('Rol', '==', 'Mozo'));
+    const querySnapshot = await getDocs(q);
+    const mozosTokens = querySnapshot.docs.map(doc => doc.data()['token']);
+  
+    return mozosTokens;
+  }
+
+  public async getMetreTokens() {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Rol', '==', 'Metre'));
+    const querySnapshot = await getDocs(q);
+    const mozosTokens = querySnapshot.docs.map(doc => doc.data()['token']);
+  
+    return mozosTokens;
+  }
+
+  public async getCocineroBaristasTokens() {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Rol', '==', 'Cocinero'), where('Rol', '==', 'Barista'));
     const querySnapshot = await getDocs(q);
     const mozosTokens = querySnapshot.docs.map(doc => doc.data()['token']);
   
@@ -567,6 +585,80 @@ export class DataService {
     })    
   }
 
+
+  public async saveEncuesta(encuestaData : any)
+  {
+    const encuestaCollection = collection(this.firestore, 'encuestas');
+    const docRef = await addDoc(encuestaCollection, encuestaData);  
+
+    return docRef.id;
+  }
+
+  async getVotosComida(): Promise<number[]> {
+    const encuestaCollection = collection(this.firestore, 'encuestas');
+    
+    // Realizar la consulta para obtener los datos de la colección 'encuestas'
+    const q = query(encuestaCollection, where('comida', '>=', 1), where('comida', '<=', 5));
+    const querySnapshot: QuerySnapshot<any> = await getDocs(q);
+
+    // Inicializar un array para contar los votos en cada categoría (1 al 5)
+    const conteoVotos = [0, 0, 0, 0, 0];
+
+    // Contar los votos en cada categoría
+    querySnapshot.forEach(doc => {
+      const voto = doc.data().comida;
+      if (voto >= 1 && voto <= 5) {
+        conteoVotos[voto - 1]++;
+      }
+    });
+
+    return conteoVotos;
+  }
+
+  async getVotosAtencion(){
+    const encuestaCollection = collection(this.firestore, 'encuestas');
+    
+    // Realizar la consulta para obtener los datos de la colección 'encuestas'
+    const q = query(encuestaCollection, where('atencion', '>=', 1), where('atencion', '<=', 5));
+    const querySnapshot: QuerySnapshot<any> = await getDocs(q);
+
+    // Inicializar un array para contar los votos en cada categoría (1 al 5)
+    const conteoVotos = [{name: "1", value: 0}, {name: "2", value: 0}, {name: "3", value: 0}, {name: "4", value: 0}, {name: "5", value: 0}];
+
+    // Contar los votos en cada categoría
+    querySnapshot.forEach(doc => {
+      const voto = doc.data().atencion;
+      if (voto >= 1 && voto <= 5) {
+        conteoVotos[voto - 1]["value"]++;
+      }
+    });
+
+    const votosFiltrados = conteoVotos.filter(voto => voto.value > 0);
+
+    return votosFiltrados;
+  }
+
+  async getVotosGeneral(): Promise<number[]> {
+    const encuestaCollection = collection(this.firestore, 'encuestas');
+    
+    // Realizar la consulta para obtener los datos de la colección 'encuestas'
+    const q = query(encuestaCollection, where('general', '>=', 1), where('general', '<=', 5));
+    const querySnapshot: QuerySnapshot<any> = await getDocs(q);
+
+    // Inicializar un array para contar los votos en cada categoría (1 al 5)
+    const conteoVotos = [0, 0, 0, 0, 0];
+
+    // Contar los votos en cada categoría
+    querySnapshot.forEach(doc => {
+      const voto = doc.data().general;
+      if (voto >= 1 && voto <= 5) {
+        conteoVotos[voto - 1]++;
+      }
+    });
+
+    return conteoVotos;
+  }
+
   public async getUserFromMesa(numeroMesa : string)
   {
     const userCollection = collection(this.firestore, 'UsersOnLocal');
@@ -605,7 +697,7 @@ export class DataService {
       [sector]: true
     });
   }
-
+  
   public async changeOrderStatus(userName : string, status : string)
   {
     const EstadoPedidoCollection = collection(this.firestore, 'UsersOnLocal');
