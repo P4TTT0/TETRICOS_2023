@@ -1,0 +1,24 @@
+<ion-content [fullscreen]="true">
+  <app-nav-bar></app-nav-bar>
+  <div class="background">
+    <div class="back-button-container">
+      <ion-button (click)="onBackClick()" class="back-button" expand="block" fill="clear" shape="round">
+        <i class="bi bi-arrow-left"></i>
+      </ion-button>
+    </div>
+    <div class="users-container">
+      <div>
+        <h1>Pedidos aceptados</h1>
+      </div>
+      <div class="users">
+        <div  class="user-container"*ngFor="let pedido of this.pedidos" (click)="onAssignClick(pedido.PedidoDe)">
+          <div>
+            <i class="bi bi-person-circle"></i>
+            <span>@{{pedido.PedidoDe}}</span>
+            <p>{{convertToPastTime(pedido.HoraSolicitado)}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

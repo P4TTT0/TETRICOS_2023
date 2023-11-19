@@ -4,19 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PedidoPageRoutingModule } from './pedido-routing.module';
+import { PedidosAceptadosPageRoutingModule } from './pedidos-aceptados-routing.module';
 
-import { PedidoPage } from './pedido.page';
+import { PedidosAceptadosPage } from './pedidos-aceptados.page';
 import { SharedModule } from "../../../modules/shared/shared.module";
 
 @NgModule({
-    declarations: [PedidoPage],
+    declarations: [PedidosAceptadosPage],
     imports: [
         CommonModule,
         FormsModule,
         IonicModule,
-        PedidoPageRoutingModule,
+        PedidosAceptadosPageRoutingModule,
         SharedModule
     ]
 })
-export class PedidoPageModule {}
+export class PedidosAceptadosPageModule {}
