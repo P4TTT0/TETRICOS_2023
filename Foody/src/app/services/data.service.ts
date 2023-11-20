@@ -405,6 +405,20 @@ export class DataService {
     });
   }
 
+  public async updateMesaAsignadaByUserName(userName : string, mesa : any)
+  {
+    const EstadoPedidoCollection = collection(this.firestore, 'User');
+    const querySnapshot = await getDocs(query(EstadoPedidoCollection, where('UserName', '==', userName)));
+    const userDoc = querySnapshot.docs[0];
+    const pedidoID = userDoc.id;
+    const userCollection = collection(this.firestore, 'User');
+    const docRef = doc(userCollection, pedidoID);
+    await updateDoc(docRef, 
+    {
+      MesaAsignada: mesa
+    });
+  }
+
   public async entregarPedidoByUserName(userName : string)
   {
     const EstadoPedidoCollection = collection(this.firestore, 'EstadoPedido');
