@@ -30,7 +30,7 @@ export class MesaPage implements OnInit {
 
   public async onBackClick()
   {
-    this.navCtrl.back();
+    this.router.navigateByUrl('home');
   }
 
   public onCategoryClick(category : string)

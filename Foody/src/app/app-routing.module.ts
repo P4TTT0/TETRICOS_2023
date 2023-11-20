@@ -96,7 +96,11 @@ const routes: Routes = [
   {
     path: 'pedidos-aceptados',
     loadChildren: () => import('./pages/mozo/pedidos-aceptados/pedidos-aceptados.module').then( m => m.PedidosAceptadosPageModule)
+  },  {
+    path: 'chats',
+    loadChildren: () => import('./pages/chats/chats.module').then( m => m.ChatsPageModule)
   }
+
 
 ];
 

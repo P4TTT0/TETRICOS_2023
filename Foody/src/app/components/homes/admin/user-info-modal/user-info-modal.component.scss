@@ -83,3 +83,17 @@ span
 {
     background-color: #a7a7a7a9;
 }
+
+.image
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img
+{
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}

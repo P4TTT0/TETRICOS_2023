@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
@@ -18,7 +18,7 @@ export class ChatMozoPage implements OnInit {
   messages : any;
   mesa : any;
 
-  constructor(public auth : AutheticationService, private formBuilder : FormBuilder, private data : DataService, private navCtrl : NavController, private push : PushNotificationService, private route : ActivatedRoute)
+  constructor(public auth : AutheticationService, private formBuilder : FormBuilder, private data : DataService, private navCtrl : NavController, private push : PushNotificationService, private route : ActivatedRoute, private router : Router)
   {
     this.chatForm = this.formBuilder.group({
       message: ['',[ Validators.required]],
@@ -28,7 +28,8 @@ export class ChatMozoPage implements OnInit {
 
   async ngOnInit() 
   {
-    this.data.subscribeToMessages().subscribe((data) =>
+    console.log('mesa' + this.mesa);
+    this.data.subscribeToMessages(this.mesa).subscribe((data) =>
     {
       this.messages = data;
       this.scrollToLastMessage();
@@ -39,7 +40,7 @@ export class ChatMozoPage implements OnInit {
   {
     if(this.chatForm.controls['message'].valid)
     {
-      this.data.sendMessage(this.chatForm.controls['message'].value, this.auth.userName, 1);
+      this.data.sendMessage(this.chatForm.controls['message'].value, this.auth.userName, this.mesa);
     }
     this.chatForm.controls['message'].setValue('');
     if(this.auth.rol == 'Usuario')
@@ -84,7 +85,7 @@ export class ChatMozoPage implements OnInit {
 
   public async onBackClick()
   {
-    this.navCtrl.back();
+    this.router.navigateByUrl('home');
   }
 
 }

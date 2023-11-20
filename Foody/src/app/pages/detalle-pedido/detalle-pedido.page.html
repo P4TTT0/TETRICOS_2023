@@ -6,6 +6,11 @@
         <span>#1</span>
       </div>
     </div>
+    <div class="row">
+      <div class="col-12 col-sm-12 tiempo">
+        <span>Tiempo estimado del pedido: {{this.TiempoEstimado}} minutos.</span>
+      </div>
+    </div>
     <div class="categorias-container">
       <div class="categoria"  *ngFor="let product of this.productos">
         <img [src]="'data:image/png;base64,' + product.Image">
