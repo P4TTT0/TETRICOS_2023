@@ -99,6 +99,10 @@ const routes: Routes = [
   },  {
     path: 'chats',
     loadChildren: () => import('./pages/chats/chats.module').then( m => m.ChatsPageModule)
+  },
+  {
+    path: 'alta-producto',
+    loadChildren: () => import('./pages/alta-producto/alta-producto.module').then( m => m.AltaProductoPageModule)
   }
 
 

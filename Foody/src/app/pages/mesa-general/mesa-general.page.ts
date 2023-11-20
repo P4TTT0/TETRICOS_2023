@@ -12,7 +12,7 @@ export class MesaGeneralPage implements OnInit {
 
   user : any;
   orderStatus : any;
-  firstButtonMessage = "Menú";
+  firstButtonMessage = "MENÚ";
 
   constructor(private auth : AutheticationService, private router : Router, private data : DataService) { }
 
@@ -56,7 +56,7 @@ export class MesaGeneralPage implements OnInit {
         this.router.navigateByUrl('mesa');
         break;
       case 'EnEspera':
-        this.router.navigateByUrl('MiPedido');
+        this.router.navigateByUrl('mi-pedido');
         break;
       case 'Entregado':
         this.router.navigateByUrl('Cuenta');

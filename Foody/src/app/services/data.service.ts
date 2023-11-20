@@ -261,7 +261,7 @@ export class DataService {
   public async getProductByCategory(category : string)
   {
     const userCollection = collection(this.firestore, 'Product');
-    const q = query(userCollection, where('Category', '==', category));
+    const q = query(userCollection, where('Category', '==', category), orderBy('Price', 'asc'));
     const querySnapshot = await getDocs(q);
     const products =  querySnapshot.docs.map(doc => doc.data());
     return products;
@@ -353,6 +353,14 @@ export class DataService {
     userData.Timestamp = Timestamp.now().toDate();
 
     await setDoc(docRef, userData);
+  }
+
+  public async saveProducto(producto : any)
+  {
+    const userCollection = collection(this.firestore, 'Product');
+    const docRef = doc(userCollection);
+
+    await setDoc(docRef, producto);
   }
  
   public getUsersWaitingList(): Observable<any[]> {
