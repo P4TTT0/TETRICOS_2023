@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 import { PushNotificationService } from 'src/app/services/push-notifications.service';
@@ -13,7 +14,7 @@ export class PedidoPage implements OnInit
 {
 
 onBackClick() {
-throw new Error('Method not implemented.');
+  this.navCtrl.back();
 }
 
 
@@ -21,7 +22,7 @@ throw new Error('Method not implemented.');
   pedidos : any[];
   cliente : any;
 
-  constructor(private activateRoute : ActivatedRoute, private data :DataService, private auth : AutheticationService, private push : PushNotificationService) 
+  constructor(private activateRoute : ActivatedRoute, private data :DataService, private auth : AutheticationService, private push : PushNotificationService, private navCtrl : NavController) 
   {
     this.pedidos = [];
   }

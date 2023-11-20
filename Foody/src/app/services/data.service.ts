@@ -575,7 +575,7 @@ export class DataService {
     }
   }
 
-  public async GetUserTableByUserName(userName: string): Promise< | null> {
+  public async GetUserMesaByUserName(userName: string): Promise<number | null> {
     const userCollection = collection(this.firestore, 'User');
     const q = query(userCollection, where('UserName', '==', userName));
     const querySnapshot = await getDocs(q);
@@ -587,9 +587,9 @@ export class DataService {
     const userDoc = querySnapshot.docs[0];
     const userData = userDoc.data();
   
-    if (userData && userData['Mesa']) {
-      console.log(userData['Mesa']);
-      return userData['Mesa'];
+    if (userData && userData['MesaAsignada']) {
+      console.log(userData['MesaAsignada']);
+      return userData['MesaAsignada'];
     } else {
       return null;
     }

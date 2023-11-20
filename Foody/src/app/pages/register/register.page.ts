@@ -67,6 +67,7 @@ export class RegisterPage implements OnInit {
       if(user)
       {
         this.router.navigateByUrl('/validate-mail');
+        this.sendPushNotification();
       }
       else
       {
