@@ -14,16 +14,21 @@ export class DetallePedidoPage implements OnInit {
 
   public productos : any;
   public price : any;
+  public TiempoEstimado : any;
 
   constructor(private route : ActivatedRoute, private data : DataService, private navCTRL : NavController, private auth : AutheticationService, private push : PushNotificationService) {
     this.productos = this.route.snapshot.paramMap.get('productos');
    }
 
   ngOnInit() {
-    this.data.getPedidoProductosByUserName(this.auth.userName).subscribe(pedido => 
+    this.data.getPedidoProductosByUserName('Luih_8').subscribe(pedido => 
     {
       this.productos = pedido;
       this.price = this.productos.reduce((total: any, pedido: { Price: any; }) => total + pedido.Price, 0);
+      this.TiempoEstimado = this.productos.reduce((maxTiempoEstimado: number, pedido: { TiempoEstimado: number; }) => {
+        return pedido.TiempoEstimado > maxTiempoEstimado ? pedido.TiempoEstimado : maxTiempoEstimado;
+      }, 0);
+      console.log(this.TiempoEstimado);
     });
   }
 
