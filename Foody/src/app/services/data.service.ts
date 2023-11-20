@@ -331,9 +331,9 @@ export class DataService {
       });
   }
   
-  public subscribeToMessages(): Observable<any[]> {
+  public subscribeToMessages(mesa : any): Observable<any[]> {
     const messageCollection = collection(this.firestore, 'Message');
-    const q = query(messageCollection, orderBy('Timestamp', 'asc'));
+    const q = query(messageCollection, orderBy('Timestamp', 'asc'), where('Mesa', '==', mesa));
 
     return new Observable<any[]>((observer) => {
       const unsubscribe = onSnapshot(q, (querySnapshot) => {

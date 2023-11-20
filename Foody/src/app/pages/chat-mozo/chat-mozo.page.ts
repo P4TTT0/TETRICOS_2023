@@ -28,7 +28,8 @@ export class ChatMozoPage implements OnInit {
 
   async ngOnInit() 
   {
-    this.data.subscribeToMessages().subscribe((data) =>
+    console.log('mesa' + this.mesa);
+    this.data.subscribeToMessages(this.mesa).subscribe((data) =>
     {
       this.messages = data;
       this.scrollToLastMessage();
@@ -39,7 +40,7 @@ export class ChatMozoPage implements OnInit {
   {
     if(this.chatForm.controls['message'].valid)
     {
-      this.data.sendMessage(this.chatForm.controls['message'].value, this.auth.userName, 1);
+      this.data.sendMessage(this.chatForm.controls['message'].value, this.auth.userName, this.mesa);
     }
     this.chatForm.controls['message'].setValue('');
     if(this.auth.rol == 'Usuario')

@@ -22,4 +22,9 @@ export class MozoHomeComponent  implements OnInit {
   {
     this.router.navigateByUrl('pedidosAceptados');
   }
+
+  public onChatsClick()
+  {
+    this.router.navigateByUrl('chats');
+  }
 }
