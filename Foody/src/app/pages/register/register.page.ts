@@ -7,6 +7,8 @@ import { ToastService } from 'src/app/services/toast.service';
 
 
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { PushNotificationService } from 'src/app/services/push-notifications.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +22,7 @@ export class RegisterPage implements OnInit {
   usandoQR = false;
 
   // ||====|| Constructor ||====||
-  constructor(private formBuilder : FormBuilder, private toast : ToastService, private auth : AutheticationService, private router : Router, private QRReader : QRReaderService) 
+  constructor(private formBuilder : FormBuilder, private toast : ToastService, private auth : AutheticationService, private router : Router, private QRReader : QRReaderService, private push : PushNotificationService, private data : DataService) 
   {
     this.form = this.formBuilder.group({
       email: ['',[Validators.required]],
@@ -119,5 +121,22 @@ export class RegisterPage implements OnInit {
     }
   }
   
+
+  async sendPushNotification() 
+  {
+    let userToken = await this.data.getAdminTokens();
+    
+    console.log('hola lol');
+    this.push.sendPushNotification({
+        registration_ids: userToken,
+        notification: {
+          title: '¡Se ha registrado un nuevo usuario!',
+          body: 'Tienes un nuevo usuario para verificar.',
+        },
+      })
+      .subscribe((data) => {
+        console.log('hola sas' + data);
+      });
+  }
 
 }

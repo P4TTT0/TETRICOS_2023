@@ -19,53 +19,11 @@ export class AdminHomeComponent  implements OnInit {
   constructor(private router : Router, private auth : AutheticationService, private push : PushNotificationService, private data : DataService, private firestore : Firestore, private navCtrl : NavController) { }
 
   ngOnInit() {
-    this.startUserListener();
   }
 
   public async onValidateUserClick()
   {
     this.router.navigateByUrl('validar-usuario');
   }
-
-  public async startUserListener() {
-    const userCollection = collection(this.firestore, 'User');
-    const q = this.lastDocument
-      ? query(userCollection, where('__name__', '>', this.lastDocument))
-      : query(userCollection);
   
-    const unsubscribe = onSnapshot(q, (snapshot) => {
-      snapshot.docChanges().forEach((change) => {
-        if (change.type === 'added') {
-          // Se ha añadido un nuevo documento de usuario.
-          this.sendPushNotification();
-          // Actualizar el último documento observado.
-          this.lastDocument = change.doc;
-          console.log(this.lastDocument);
-        }
-      });
-    });
-  };
-  
-  async sendPushNotification() 
-  {
-    let userToken = await this.data.getUserTokenByUserName(this.auth.userName);
-    
-    console.log('hola lol');
-    this.push.sendPushNotification({
-        registration_ids: [
-          userToken,
-        ],
-        notification: {
-          title: '¡Se ha registrado un nuevo usuario!',
-          body: 'Tienes un nuevo usuario para verificar.',
-        },
-      })
-      .subscribe((data) => {
-        console.log('hola sas' + data);
-      });
-  }
-  public async onBackClick()
-  {
-    this.navCtrl.back();
-  }
 }

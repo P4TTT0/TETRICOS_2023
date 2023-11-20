@@ -18,6 +18,6 @@ export class NavBarComponent  implements OnInit {
   async logout()
   {
     await this.auth.logOut();
-    this.router.navigateByUrl("/login")
+    this.router.navigateByUrl('login');
   }
 }

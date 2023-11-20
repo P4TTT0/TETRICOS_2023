@@ -50,7 +50,6 @@ export class DataService {
     const userData = userDoc.data();
   
     if (userData && userData['token']) {
-      console.log(userData['token']);
       return userData['token'];
     } else {
       return '';
@@ -271,6 +270,15 @@ export class DataService {
   public async getMozosTokens() {
     const userCollection = collection(this.firestore, 'User');
     const q = query(userCollection, where('Rol', '==', 'Mozo'));
+    const querySnapshot = await getDocs(q);
+    const mozosTokens = querySnapshot.docs.map(doc => doc.data()['token']);
+  
+    return mozosTokens;
+  }
+
+  public async getAdminTokens() {
+    const userCollection = collection(this.firestore, 'User');
+    const q = query(userCollection, where('Rol', '==', 'Admin'));
     const querySnapshot = await getDocs(q);
     const mozosTokens = querySnapshot.docs.map(doc => doc.data()['token']);
   
