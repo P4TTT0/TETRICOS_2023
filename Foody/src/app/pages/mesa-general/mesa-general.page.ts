@@ -12,7 +12,7 @@ export class MesaGeneralPage implements OnInit {
 
   user : any;
   orderStatus : any;
-  firstButtonMessage = "Menú";
+  firstButtonMessage = "MENÚ";
 
   constructor(private auth : AutheticationService, private router : Router, private data : DataService) { }
 

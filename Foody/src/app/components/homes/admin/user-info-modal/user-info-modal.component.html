@@ -15,7 +15,9 @@
       <span>DNI</span>
       <span>{{user.DNI}}</span>
     </div>
-    <img [src]="'data:image/png;base64,' + user.PhotoBase64">
+    <div class="image">
+      <img [src]="'data:image/png;base64,' + user.PhotoBase64">
+    </div>
   </div>
   <div class="buttons-container">
     <button type="button" class="btn btn-light button-option button-back" (click)="onDecideClick(null)">

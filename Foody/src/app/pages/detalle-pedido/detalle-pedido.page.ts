@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
@@ -14,8 +14,9 @@ export class DetallePedidoPage implements OnInit {
 
   public productos : any;
   public price : any;
+  public TiempoEstimado : any;
 
-  constructor(private route : ActivatedRoute, private data : DataService, private navCTRL : NavController, private auth : AutheticationService, private push : PushNotificationService) {
+  constructor(private route : ActivatedRoute, private data : DataService, private navCTRL : NavController, private auth : AutheticationService, private push : PushNotificationService, private router : Router) {
     this.productos = this.route.snapshot.paramMap.get('productos');
    }
 
@@ -24,6 +25,10 @@ export class DetallePedidoPage implements OnInit {
     {
       this.productos = pedido;
       this.price = this.productos.reduce((total: any, pedido: { Price: any; }) => total + pedido.Price, 0);
+      this.TiempoEstimado = this.productos.reduce((maxTiempoEstimado: number, pedido: { TiempoEstimado: number; }) => {
+        return pedido.TiempoEstimado > maxTiempoEstimado ? pedido.TiempoEstimado : maxTiempoEstimado;
+      }, 0);
+      console.log(this.TiempoEstimado);
     });
   }
 
@@ -43,7 +48,7 @@ export class DetallePedidoPage implements OnInit {
     }
     this.data.saveEstadoPedido(estadoPedido);
     this.auth.pedidoRealizado = true;
-    this.navCTRL.back();
+    this.router.navigateByUrl('home');
     this.sendPushNotification();
   }
 

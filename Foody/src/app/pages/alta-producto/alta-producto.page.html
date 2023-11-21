@@ -1,0 +1,14 @@
+<ion-content [fullscreen]="true">
+  <form [formGroup]="form">
+    <input type="text" placeholder="Category" formControlName="category">
+    <input type="text" placeholder="Nombre producto" formControlName="name">
+    <textarea type="text" placeholder="Description" formControlName="description"></textarea>
+    <input type="number" placeholder="Tiempo estimado" formControlName="estimatedTime">
+    <input type="number" placeholder="price" formControlName="price">
+    <input type="text" placeholder="Sector" formControlName="sector">
+    <button (click)="uploadPhoto1()">Imagen1</button>
+    <button (click)="uploadPhoto2()">Imagen2</button>
+    <button (click)="uploadPhoto3()">Imagen3</button>
+    <button (click)="onGuardarClick()">Guardar</button>
+  </form>
+</ion-content>

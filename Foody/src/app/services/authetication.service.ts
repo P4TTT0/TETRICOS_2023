@@ -49,7 +49,7 @@ export class AutheticationService {
       this.userName = await this.data.getUserNameByUID(uid);
       this.validationState = await this.data.getValidationStateByUID(uid);
       this.rol = await this.data.GetUserRolByUserName(this.userName) || '';
-      this.mesaAsignada = await this.data.GetUserTableByUserName(this.userName) || 0;
+      this.mesaAsignada = await this.data.GetUserMesaByUserName(this.userName) || -1;
       this.logueado = true;
       return credential;
     } catch (error) {
@@ -70,6 +70,7 @@ export class AutheticationService {
     this.logueado = false;
     this.userName = '';
     this.rol = '';
+    this.mesaAsignada = -1;
     return await this.ngFireAuth.signOut();
   }
 

@@ -131,6 +131,8 @@ export class ValidatedComponent  implements OnInit
           if(dataJSON.Number == this.userData.mesa)
           {
             this.router.navigateByUrl('mesa-general');
+            this.auth.mesaAsignada = dataJSON.Number;
+            await this.data.updateMesaAsignadaByUserName(this.auth.userName, dataJSON.Number);
           }
           else
           {
