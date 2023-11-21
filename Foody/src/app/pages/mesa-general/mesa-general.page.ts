@@ -56,11 +56,15 @@ export class MesaGeneralPage implements OnInit {
         this.router.navigateByUrl('mesa');
         break;
       case 'EnEspera':
-        this.router.navigateByUrl('MiPedido');
+        this.router.navigateByUrl('mi-pedido');
         break;
       case 'Entregado':
-        this.router.navigateByUrl('Cuenta');
+        this.router.navigateByUrl('cuenta');
     }
   }
 
+  onEncuestasClick()
+  {
+    this.router.navigateByUrl("/graficos")
+  }
 }
