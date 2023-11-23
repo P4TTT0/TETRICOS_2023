@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true">  
+  <app-nav-bar></app-nav-bar>
+  <div class="background">
+    <div class="seccion">
+      <h1>Cuenta:</h1>
+      <table class="center-table">
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th style="display: flex;" class="centrado">Cant.</th>
+            <th class="centrado">Precio</th>
+            <th class="centrado">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let pedido of pedidos">
+            <td>{{ pedido.NombreProducto }}</td>
+            <td class="centrado">{{ pedido.Cantidad }}</td>
+            <td class="centrado">${{ pedido.Precio }}</td>
+            <td class="centrado">${{ pedido.TotalPorProducto }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="separador"></div> <!-- Línea separadora -->
+      <h2 style="text-align: end;">Propina: ${{propina}}</h2>
+      <div class="separador"></div> <!-- Línea separadora -->
+      <h2 style="text-align: end;">Total: ${{total}}</h2>
+    </div>
+    <div class="button-container">      
+      <button (click)="darPropina()"> <span>Dar propina</span> <i style="margin-left: 6px;" class="bi bi-qr-code-scan"></i></button>
+      <button (click)="onPagar()"> <span>Pagar en efectivo <i style="margin-left: 6px;" class="bi bi-cash-coin"></i></span></button>
+    </div>
+  </div>
+</ion-content>

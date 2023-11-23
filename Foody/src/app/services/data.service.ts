@@ -754,4 +754,31 @@ export class DataService {
     });
   } 
 
+  public async getCuentaFromUser(userName : string) : Promise<any | null>
+  {
+    const userCollection = collection(this.firestore, 'Pedido');
+    const q = query(userCollection, where('PedidoDe', '==', userName));
+    const querySnapshot = await getDocs(q);
+  
+    if (querySnapshot.empty) 
+    {
+      return null;
+    }
+
+    const pedidos = querySnapshot.docs.map(doc => doc.data());
+
+    return pedidos;
+  }
+  
+  public async pagarCuenta(userName : string, status : string, monto: number)
+  {
+    const EstadoPedidoCollection = collection(this.firestore, 'UsersOnLocal');
+    const querySnapshot = await getDocs(query(EstadoPedidoCollection, where('name', '==', userName)));
+    const docRef = querySnapshot.docs[0].ref;
+    await updateDoc(docRef, 
+    {
+      orderStatus: status,
+      monto: monto
+    });
+  }
 }

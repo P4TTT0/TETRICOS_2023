@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { GraficosPageRoutingModule } from './graficos-routing.module';
+import { CuentaPageRoutingModule } from './cuenta-routing.module';
 
-import { GraficosPage } from './graficos.page';
+import { CuentaPage } from './cuenta.page';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    GraficosPageRoutingModule,
+    CuentaPageRoutingModule,
     SharedModule
   ],
-  declarations: [GraficosPage]
+  declarations: [CuentaPage]
 })
-export class GraficosPageModule {}
+export class CuentaPageModule {}
