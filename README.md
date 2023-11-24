@@ -57,5 +57,5 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[Gestión ingreso local]**: | Done | 11 nov. - 11 nov. | **[✔️]**
 - **[Metre asigna mesa]**: | Done | 12 nov. - 12 nov. | **[✔️]**
 - **[Arreglos estéticos]**: | Done | 18 nov. - 18 nov. | **[✔️]**
-- **[Encuesta]**: | Doing | 18 nov. - ??? | **[🔨]**
+- **[Encuesta]**: | Doing | 18 nov. -  22 Nov. | **[✔️]**
 - **[Push empleados]**: | Done | 19 nov. - 19 nov. | **[✔️]**
