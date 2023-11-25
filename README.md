@@ -59,3 +59,4 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[Arreglos estéticos]**: | Done | 18 nov. - 18 nov. | **[✔️]**
 - **[Encuesta]**: | Doing | 18 nov. -  22 Nov. | **[✔️]**
 - **[Push empleados]**: | Done | 19 nov. - 19 nov. | **[✔️]**
+- **[QR Propina]**: | Done | 22 nov. - 22 nov. | **[✔️]**
