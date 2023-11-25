@@ -126,6 +126,7 @@ export class ValidatedComponent  implements OnInit
 
       try
       {
+        console.log(dataJSON);
         if(dataJSON.Type == 'Mesa')
         {
           if(dataJSON.Number == this.userData.mesa)
@@ -141,7 +142,7 @@ export class ValidatedComponent  implements OnInit
         }
         else
         {
-          if(dataJSON.Type == 'Ingreso al local')
+          if(dataJSON.Type == 'IngresoAlLocal')
           {
             this.toast.showMessage('Usted ya se encuentra dentro del local...', 4000)
           }

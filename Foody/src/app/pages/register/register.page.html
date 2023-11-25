@@ -13,8 +13,10 @@
             <ion-button style="--background: #B84141;" id="qr-button" (click)="readQR()">
               <ion-icon slot="icon-only" name="qr-code" style="background-color: gray;"></ion-icon>
             </ion-button>
-            <img class="icono"  [src]="this.form.controls['photo'].value ? '../../../assets/tilde.png' : '../../../assets/anon.png' " alt="">
-            <ion-button style="--background:#B84141;" (click)="uploadPhoto()">Cargar Foto</ion-button>
+            <div>
+              <img class="icono"  [src]="this.form.controls['photo'].value ? '../../../assets/tilde.png' : '../../../assets/anon.png' " alt="">
+              <ion-button style="--background:#B84141; margin-left: 15px;" (click)="uploadPhoto()">Cargar Foto</ion-button>
+            </div>
           </div>
         </div>
         <div class="fields-container">

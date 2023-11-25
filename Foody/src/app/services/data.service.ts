@@ -455,6 +455,89 @@ export class DataService {
     });
   } 
 
+  public getPedidosPorPagar(): Observable<any[]> {
+    const userCollection = collection(this.firestore,"UsersOnLocal");
+    const q = query(userCollection, where('orderStatus', '==', 'PorPagar'));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        observer.next(users);
+      });
+
+      return () => unsubscribe();
+    });
+  } 
+
+  public async liberarMesa(userName: string, numeroMesa : number) {
+    //Eliminar estado de pedido.
+    let userCollection = collection(this.firestore, 'EstadoPedido');
+    let q = query(userCollection, where('PedidoDe', '==', userName));
+    let querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) 
+    {
+      querySnapshot.docs.forEach(doc => 
+      {
+        deleteDoc(doc.ref);
+      });
+    }
+
+    //Eliminar al usuario de la lista de usuarios en el local
+    userCollection = collection(this.firestore, 'UsersOnLocal');
+    q = query(userCollection, where('name', '==', userName));
+    querySnapshot = await getDocs(q);
+
+    
+    if (!querySnapshot.empty) 
+    {
+      querySnapshot.docs.forEach(doc => 
+      {
+        deleteDoc(doc.ref);
+      });
+    }
+
+    //Eliminar mensajes del chat.
+    userCollection = collection(this.firestore, 'Message');
+    q = query(userCollection, where('Mesa', '==', numeroMesa));
+    querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) 
+    {
+      querySnapshot.docs.forEach(doc => 
+      {
+        deleteDoc(doc.ref);
+      });
+    }
+
+    //Eliminar pedido.
+    userCollection = collection(this.firestore, 'Pedido');
+    q = query(userCollection, where('PedidoDe', '==', userName));
+    querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) 
+    {
+      querySnapshot.docs.forEach(doc => 
+      {
+        deleteDoc(doc.ref);
+      });
+    }
+
+    const mesasCollection = collection(this.firestore, 'Mesas');
+    const mesaQuery = query(mesasCollection, where('numeroMesa', '==', numeroMesa));
+    const mesaSnapshot = await getDocs(mesaQuery);
+  
+    // Si se encuentra una mesa que coincide con el número proporcionado, actualizar 'usuarioAsignado'
+    if (!mesaSnapshot.empty) {
+      const mesaDoc = mesaSnapshot.docs[0];
+      const mesaDocRef = doc(mesasCollection, mesaDoc.id);
+  
+      await updateDoc(mesaDocRef, {
+        usuarioAsignado: false
+      });
+    }
+  }
+
   public getPedidosAceptados(): Observable<any[]> {
     const userCollection = collection(this.firestore,"EstadoPedido");
     const q = query(userCollection, where('Estado', '==', 'aceptado'));
@@ -603,16 +686,30 @@ export class DataService {
     }
   }
 
-  public async setMesa(userName: string, mesa : number): Promise<void> 
-  {
+  public async setMesa(userName: string, mesa: number): Promise<void> {
     const userCollection = collection(this.firestore, 'UsersOnLocal');
     let userUID = (await this.getUserOnLocalByUserName(userName)).UID;
     const docRef = doc(userCollection, userUID);
-    
-    await updateDoc(docRef,
-    {
-      mesa : mesa
-    })    
+  
+    // Actualizar el campo 'mesa' en UsersOnLocal
+    await updateDoc(docRef, {
+      mesa: mesa
+    });
+  
+    // Buscar la mesa en la colección 'Mesas' con el número de mesa proporcionado
+    const mesasCollection = collection(this.firestore, 'Mesas');
+    const mesaQuery = query(mesasCollection, where('numeroMesa', '==', mesa));
+    const mesaSnapshot = await getDocs(mesaQuery);
+  
+    // Si se encuentra una mesa que coincide con el número proporcionado, actualizar 'usuarioAsignado'
+    if (!mesaSnapshot.empty) {
+      const mesaDoc = mesaSnapshot.docs[0];
+      const mesaDocRef = doc(mesasCollection, mesaDoc.id);
+  
+      await updateDoc(mesaDocRef, {
+        usuarioAsignado: true
+      });
+    }
   }
 
 
@@ -692,7 +789,7 @@ export class DataService {
   public async getUserFromMesa(numeroMesa : string)
   {
     const userCollection = collection(this.firestore, 'UsersOnLocal');
-    const q = query(userCollection, where('mesa', '==', numeroMesa));
+    const q = query(userCollection, where('mesa', '==', parseInt(numeroMesa)));
     const querySnapshot = await getDocs(q);
     const userDoc = querySnapshot.docs[0];
     return userDoc.data();
@@ -756,6 +853,7 @@ export class DataService {
 
   public async getCuentaFromUser(userName : string) : Promise<any | null>
   {
+    console.log('UserName' + userName);
     const userCollection = collection(this.firestore, 'Pedido');
     const q = query(userCollection, where('PedidoDe', '==', userName));
     const querySnapshot = await getDocs(q);
@@ -781,4 +879,21 @@ export class DataService {
       monto: monto
     });
   }
+
+  public escucharConfirmacionMozo(userName : string): Observable<any[]> {
+    const userCollection = collection(this.firestore,"UsersOnLocal");
+    const q = query(userCollection, where('name', '==', userName));
+
+    return new Observable<any[]>((observer) => {
+      const unsubscribe = onSnapshot(q, (querySnapshot) => {
+        const users = querySnapshot.docs.map((doc) => doc.data());
+        if (users == null)
+        {
+          observer.next(users);
+        }
+      });
+
+      return () => unsubscribe();
+    });
+  } 
 }

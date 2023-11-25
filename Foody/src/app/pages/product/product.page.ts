@@ -57,7 +57,7 @@ export class ProductPage implements OnInit {
   {
     let sector = 'Cocina'
 
-    if(this.product.category == 'Bebidas' || this.product.category == 'Alcohol')
+    if(this.product.Category == 'Bebidas' || this.product.Category == 'Alcohol')
     {
       sector = 'Bar';
     }

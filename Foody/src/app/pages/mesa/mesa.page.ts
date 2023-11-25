@@ -21,7 +21,7 @@ export class MesaPage implements OnInit {
   {
     this.categorys = await this.data.getCategorys();
     console.log(this.categorys);
-    this.data.getPedidoProductosByUserName('pedro').subscribe(pedido => 
+    this.data.getPedidoProductosByUserName(this.auth.userName).subscribe(pedido => 
     {
       this.pedido = pedido;
       this.precioTotal = this.pedido.reduce((total: any, pedido: { Price: any; }) => total + pedido.Price, 0);

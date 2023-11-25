@@ -27,4 +27,9 @@ export class MozoHomeComponent  implements OnInit {
   {
     this.router.navigateByUrl('chats');
   }
+
+  public onPagosClick()
+  {
+    this.router.navigateByUrl('pagos');
+  }
 }

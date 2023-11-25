@@ -50,3 +50,19 @@ button{
     background-color: #000000; /* Color de la línea separadora */
     margin: 10px 0; /* Ajusta según sea necesario */
 }
+
+.pagando
+{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    span
+    {
+        background-color: #B8414130;
+        padding: 10px;
+        border-radius: 10px;
+    }
+}

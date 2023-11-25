@@ -19,16 +19,18 @@ export class CuentaPage implements OnInit {
   @Output() usingQRChange: EventEmitter<boolean> = new EventEmitter<boolean>();
   usingQR : boolean = false;
   waitingForData = true;
+  totalFinal : any;
+  public pagando : boolean = false;
   
   constructor(private data: DataService,
-              private auth: AutheticationService,
-              private router: Router,
-              private QRReader : QRReaderService,
-              private toast : ToastService) { }
-
-  async ngOnInit() {
+    private auth: AutheticationService,
+    private router: Router,
+    private QRReader : QRReaderService,
+    private toast : ToastService) { }
     
-    const rawPedidos = await this.data.getCuentaFromUser("Luih_8");
+    async ngOnInit() {
+    await this.auth.reLogin();
+    const rawPedidos = await this.data.getCuentaFromUser(this.auth.userName);
     
     const productosAgrupados: { [nombreProducto: string]: { cantidad: number, precio: number } } = {};
     
@@ -54,6 +56,7 @@ export class CuentaPage implements OnInit {
       
       // Calcular el total general sumando el total de cada producto
       this.total += totalPorProducto;
+      this.totalFinal = this.total;
 
       return {
         NombreProducto: nombreProducto,
@@ -62,19 +65,27 @@ export class CuentaPage implements OnInit {
         TotalPorProducto: totalPorProducto
       };
     });
-
-    console.log(this.pedidos);
-    console.log('Total:', this.total);
   }
 
-  onPagar()
+  async onPagar()
   {
-    this.data.pagarCuenta(this.auth.userName,"PorPagar",this.total)
-    this.router.navigateByUrl("mesa-general")
+    await this.data.pagarCuenta(this.auth.userName,"PorPagar",this.total);
+    this.pagando = true;
+    this.data.escucharConfirmacionMozo(this.auth.userName).subscribe(async (x : any) =>
+    {
+      console.log('paga');
+      if(x.orderStatus == 'pagado')
+      {
+        console.log('pagado');
+        await this.data.liberarMesa(this.auth.userName, this.auth.mesaAsignada);
+        this.router.navigateByUrl('home');
+      }
+    });
   }
 
   async darPropina()
   {
+    this.total = this.totalFinal;
     this.usingQRChange.emit(true);
     this.QRReader.hideBackground();
     this.usingQR = true;
