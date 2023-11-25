@@ -62,7 +62,11 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[QR Propina]**: | Done | 22 nov. - 22 nov. | **[✔️]**
 
 ## | PANTALLAS |
-- Login y Register.
-  
-![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/fad2e511-c78f-40ae-9a49-9f4e9f7f7ff4) ![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/a7aaf61a-b982-475e-ae6e-f877283042fa)
+![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/fad2e511-c78f-40ae-9a49-9f4e9f7f7ff4) ![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/a7aaf61a-b982-475e-ae6e-f877283042fa)![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/9d3b85fb-a1ce-46ac-9b84-c9750efb301e)
+![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/4b5d0d04-0477-4052-86e2-224c0d69bd1d)![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/d6b50eba-2e73-4f4a-8c92-c18766756551)![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/3e33be6b-8084-45ed-9025-eee0d24111fa)![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/299a7ba9-b278-4132-bcef-447170b5a604)![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/7fe80eb0-5648-49ff-9a2a-8915f8a86d16)
+
+
+
+
+
 
