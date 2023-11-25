@@ -60,3 +60,8 @@ Las tareas a realizar seran trabajadas de manera organizada con la ayuda de [< T
 - **[Encuesta]**: | Doing | 18 nov. -  22 Nov. | **[✔️]**
 - **[Push empleados]**: | Done | 19 nov. - 19 nov. | **[✔️]**
 - **[QR Propina]**: | Done | 22 nov. - 22 nov. | **[✔️]**
+
+## | PANTALLAS |
+- Login y Register.
+![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/fad2e511-c78f-40ae-9a49-9f4e9f7f7ff4) ![image](https://github.com/P4TTT0/TETRICOS_2023/assets/98591487/a7aaf61a-b982-475e-ae6e-f877283042fa)
+
