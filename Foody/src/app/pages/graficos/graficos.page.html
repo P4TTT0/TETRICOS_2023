@@ -1,5 +1,10 @@
 <ion-content [fullscreen]="true">
   <app-nav-bar></app-nav-bar>
+  <div class="back-button-container">
+    <ion-button class="back-button" (click)="onBackClick()" expand="block" fill="clear" shape="round">
+      <i class="bi bi-arrow-left"></i>
+    </ion-button>
+  </div>
   <div class="contenedor">
     <ion-button *ngIf="!auth.encuesta" (click)="onClick()" class="boton">Completar mi encuesta</ion-button>
     <h1>Comida</h1>

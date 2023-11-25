@@ -30,7 +30,7 @@ onBackClick() {
   async ngOnInit() 
   {
     this.parametro = this.activateRoute.snapshot.paramMap.get('parametro');
-
+    console.log(this.parametro);
     this.cliente = await this.data.getUserFromMesa(this.parametro);
 
     let sector = 'Cocina'

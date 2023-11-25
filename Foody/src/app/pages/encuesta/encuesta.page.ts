@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 import { ToastService } from 'src/app/services/toast.service';
@@ -18,7 +19,8 @@ export class EncuestaPage implements OnInit {
               private toast : ToastService, 
               private auth : AutheticationService, 
               private router : Router,
-              private data : DataService) { 
+              private data : DataService,
+              private navController : NavController) { 
 
     this.form = this.formBuilder.group({
 
@@ -31,6 +33,11 @@ export class EncuestaPage implements OnInit {
 
   ngOnInit() {
     
+  }
+
+  public async onBackClick()
+  {
+    this.navController.back();
   }
 
   submitEncuesta()

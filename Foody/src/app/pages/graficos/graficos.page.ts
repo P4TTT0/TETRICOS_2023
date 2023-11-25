@@ -14,6 +14,7 @@ import { CanvasRenderer } from 'echarts/renderers';
 import { LabelLayout } from 'echarts/features';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 
 echarts.use([
   TooltipComponent,
@@ -53,9 +54,15 @@ export class GraficosPage implements OnInit {
 
   constructor(private firestore: DataService,
               public auth: AutheticationService,
-              private router: Router) { }
+              private router: Router,
+              private navController : NavController) { }
 
   ngOnInit() {
+  }
+
+  public async onBackClick()
+  {
+    this.navController.back();
   }
 
   async ngAfterViewInit() 

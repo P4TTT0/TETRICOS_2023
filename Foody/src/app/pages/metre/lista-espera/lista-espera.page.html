@@ -16,14 +16,16 @@
             <i class="bi bi-person-circle"></i>
             <span>@{{user.name}}</span>
             <p>{{convertToPastTime(user.Timestamp)}}</p>
-            <button  type="button" (click)="onAssignClick(user,false)" class="btn btn-light button-option button-reject" >
-              <i class="bi bi-x"></i>
-              <span>ELIMINAR</span>
-            </button>
-            <button type="button" (click)="onAssignClick(user,true)" class="btn btn-light button-option button-accept" >
-              <i class="bi bi-check"></i>
-              <span>ASIGNAR</span>
-            </button>
+            <div class="d-flex justify-content-between align-items-center">
+              <button  type="button" (click)="onAssignClick(user,false)" class="btn btn-light button-option button-reject" >
+                <i class="bi bi-x"></i>
+                <span>ELIMINAR</span>
+              </button>
+              <button type="button" (click)="onAssignClick(user,true)" class="btn btn-light button-option button-accept" >
+                <i class="bi bi-check"></i>
+                <span>ASIGNAR</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavController } from '@ionic/angular';
 import { AutheticationService } from 'src/app/services/authetication.service';
 import { DataService } from 'src/app/services/data.service';
 
@@ -12,7 +12,7 @@ export class MiPedidoPage implements OnInit {
 
   public pedido : any;
 
-  constructor(private data : DataService, private modalController : ModalController, private auth : AutheticationService) { }
+  constructor(private data : DataService, private modalController : ModalController, private auth : AutheticationService, private navController : NavController) { }
 
   async ngOnInit() 
   {
@@ -30,7 +30,7 @@ export class MiPedidoPage implements OnInit {
       this.data.changeOrderStatus(this.auth.userName,'Entregado')
     }
 
-    this.modalController.dismiss();
+    this.navController.back();
   }
 }
 

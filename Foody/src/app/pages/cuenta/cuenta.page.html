@@ -1,6 +1,6 @@
 <ion-content [fullscreen]="true">  
   <app-nav-bar></app-nav-bar>
-  <div class="background">
+  <div class="background" *ngIf="!this.pagando; else elseBlock">
     <div class="seccion">
       <h1>Cuenta:</h1>
       <table class="center-table">
@@ -21,9 +21,9 @@
           </tr>
         </tbody>
       </table>
-      <div class="separador"></div> <!-- Línea separadora -->
+      <div class="separador"></div> 
       <h2 style="text-align: end;">Propina: ${{propina}}</h2>
-      <div class="separador"></div> <!-- Línea separadora -->
+      <div class="separador"></div> 
       <h2 style="text-align: end;">Total: ${{total}}</h2>
     </div>
     <div class="button-container">      
@@ -31,4 +31,11 @@
       <button (click)="onPagar()"> <span>Pagar en efectivo <i style="margin-left: 6px;" class="bi bi-cash-coin"></i></span></button>
     </div>
   </div>
+  <ng-template #elseBlock>
+    <div class="background">
+      <div class="pagando">
+        <span>¡Espere que el mozo confirme el pago!</span>
+      </div>
+    </div>
+  </ng-template>
 </ion-content>

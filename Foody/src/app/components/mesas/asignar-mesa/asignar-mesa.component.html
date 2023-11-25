@@ -3,9 +3,13 @@
     <span>@{{user.name}}</span>
   </div>  
   <h1>Mesas disponibles:</h1>
-  <ion-button (click)="asignarMesa(mesa.numeroMesa)" [disabled]="mesa.usuarioAsignado" class="info-container" *ngFor="let mesa of this.mesas">      
-    {{ mesa.numeroMesa }}
-  </ion-button>
+  <div class="row" style="height: 75%;">
+    <div class="col-12" style="margin-bottom: 10px;" *ngFor="let mesa of this.mesas">
+      <ion-button (click)="asignarMesa(mesa.numeroMesa)" [disabled]="mesa.usuarioAsignado" class="info-container">      
+        {{ mesa.numeroMesa }}
+      </ion-button>
+    </div>
+  </div>
   <div class="buttons-container">
     <button (click)="asignarMesa(null)" type="button" class="btn btn-light button-option button-back">
       <i class="bi bi-arrow-left"></i>
